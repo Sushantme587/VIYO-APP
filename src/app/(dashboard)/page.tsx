@@ -1,3 +1,5 @@
+"use client";
+
 import { APIProvider } from '@vis.gl/react-google-maps';
 import MapView from '@/components/dashboard/map-view';
 import AlertConsole from '@/components/dashboard/alert-console';
