@@ -1,3 +1,4 @@
+
 "use client"
 
 import { Bar, BarChart, CartesianGrid, XAxis, Line, LineChart, Pie, PieChart, Cell } from "recharts"
@@ -16,7 +17,7 @@ import {
   ChartLegend,
   ChartLegendContent,
 } from "@/components/ui/chart"
-import { Users, AlertTriangle, Siren, Clock } from "lucide-react"
+import { Users, AlertTriangle, Siren, Clock, Shield, TrafficCone, Trees } from "lucide-react"
 
 const chartData = [
   { month: "January", tourists: 186, alerts: 80 },
@@ -33,6 +34,13 @@ const pieChartData = [
     { name: 'Panic Button', value: 150, fill: 'var(--color-panic)' },
     { name: 'Prolonged Inactivity', value: 200, fill: 'var(--color-inactivity)' },
 ]
+
+// Mock data for tourist distribution
+const touristDistributionData = {
+    restricted: 5,
+    highTraffic: 42,
+    scenic: 28,
+};
 
 const chartConfig = {
   tourists: {
@@ -135,6 +143,44 @@ export default function AnalyticsDashboard() {
                 </CardContent>
             </Card>
         </div>
+         <Card>
+            <CardHeader>
+                <CardTitle>Tourist Distribution by Zone</CardTitle>
+                <CardDescription>Live count of tourists in each designated zone type.</CardDescription>
+            </CardHeader>
+            <CardContent className="grid gap-4 md:grid-cols-3">
+                <Card className="bg-destructive/10 border-destructive/30">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium text-destructive">Restricted Zones</CardTitle>
+                        <Shield className="h-5 w-5 text-destructive" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-3xl font-bold text-destructive">{touristDistributionData.restricted}</div>
+                        <p className="text-xs text-destructive/80">tourists currently inside</p>
+                    </CardContent>
+                </Card>
+                <Card className="bg-accent/10 border-accent/30">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium text-accent-foreground/80">High-Traffic Zones</CardTitle>
+                        <TrafficCone className="h-5 w-5 text-accent-foreground/80" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-3xl font-bold">{touristDistributionData.highTraffic}</div>
+                        <p className="text-xs text-muted-foreground">tourists currently inside</p>
+                    </CardContent>
+                </Card>
+                <Card className="bg-green-500/10 border-green-500/30">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                        <CardTitle className="text-sm font-medium text-green-600">Scenic Zones</CardTitle>
+                        <Trees className="h-5 w-5 text-green-600" />
+                    </CardHeader>
+                    <CardContent>
+                        <div className="text-3xl font-bold text-green-700">{touristDistributionData.scenic}</div>
+                        <p className="text-xs text-green-600/80">tourists currently inside</p>
+                    </CardContent>
+                </Card>
+            </CardContent>
+        </Card>
     </div>
   )
 }
