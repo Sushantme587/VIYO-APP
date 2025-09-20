@@ -14,6 +14,7 @@ import { useToast } from '@/hooks/use-toast';
 import { ERIFModal } from './efir-modal';
 import { DispatchModal } from './dispatch-modal';
 import { checkForAnomalies } from '@/lib/actions';
+import ClientOnlyTimestamp from './client-only-timestamp';
 
 interface AlertConsoleProps {
   initialAlerts: Alert[];
@@ -105,7 +106,7 @@ export default function AlertConsole({ initialAlerts, allTourists }: AlertConsol
                     <div className="ml-auto text-right">
                         <Badge variant={alert.status === 'New' ? 'destructive' : 'secondary'}>{alert.status}</Badge>
                         <p className="text-xs text-muted-foreground mt-1">
-                            {formatDistanceToNow(new Date(alert.timestamp), { addSuffix: true })}
+                          <ClientOnlyTimestamp timestamp={alert.timestamp} />
                         </p>
                     </div>
                   </div>

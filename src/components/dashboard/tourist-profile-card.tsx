@@ -11,12 +11,15 @@ import { Badge } from "@/components/ui/badge";
 import { User, FileText, Phone, Map, Clock } from "lucide-react";
 import type { Tourist } from "@/lib/types";
 import { format } from 'date-fns';
+import ClientOnlyTimestamp from "./client-only-timestamp";
 
 interface TouristProfileCardProps {
     tourist: Tourist;
 }
 
 export default function TouristProfileCard({ tourist }: TouristProfileCardProps) {
+  const lastLocation = tourist.locationHistory.at(-1);
+
   return (
     <Card className="sticky top-20">
       <CardHeader className="text-center">
@@ -57,18 +60,20 @@ export default function TouristProfileCard({ tourist }: TouristProfileCardProps)
                      ))}
                 </div>
             </div>
-            <div className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-muted-foreground mt-0.5" />
-                 <div>
-                    <div className="font-medium">Last Known Location</div>
-                     <div className="text-muted-foreground">
-                         Lat: {tourist.locationHistory.at(-1)?.latitude.toFixed(4)}, Lng: {tourist.locationHistory.at(-1)?.longitude.toFixed(4)}
-                     </div>
-                      <div className="text-xs text-muted-foreground/70">
-                         As of {format(new Date(tourist.locationHistory.at(-1)!.timestamp), "MMM d, yyyy, h:mm a")}
-                     </div>
-                </div>
-            </div>
+            {lastLocation && (
+              <div className="flex items-start gap-3">
+                  <Clock className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <div>
+                      <div className="font-medium">Last Known Location</div>
+                      <div className="text-muted-foreground">
+                          Lat: {lastLocation.latitude.toFixed(4)}, Lng: {lastLocation.longitude.toFixed(4)}
+                      </div>
+                        <div className="text-xs text-muted-foreground/70">
+                          <ClientOnlyTimestamp timestamp={lastLocation.timestamp} format="MMM d, yyyy, h:mm a" />
+                      </div>
+                  </div>
+              </div>
+            )}
         </div>
       </CardContent>
     </Card>
