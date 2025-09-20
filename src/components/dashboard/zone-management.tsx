@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useMemo, useEffect } from 'react';
@@ -28,9 +29,9 @@ interface ZoneManagementProps {
 }
 
 const zoneTypeColors = {
-  'Restricted': { fill: '#ff4d4d', stroke: '#cc0000' },
-  'High-Traffic': { fill: '#ffc107', stroke: '#e69500' },
-  'Scenic': { fill: '#4CAF50', stroke: '#388E3C' },
+  'Restricted': { fill: '#ff4d4d', stroke: '#00008B' },
+  'High-Traffic': { fill: '#ffc107', stroke: '#00008B' },
+  'Scenic': { fill: '#4CAF50', stroke: '#00008B' },
 };
 
 // Helper function to calculate the center of a polygon

@@ -18,9 +18,9 @@ interface MapViewProps {
 }
 
 const zoneTypeColors = {
-  'Restricted': { fill: '#ff4d4d', stroke: '#808080' }, // Red fill, gray stroke
-  'High-Traffic': { fill: '#ffc107', stroke: '#808080' }, // Yellow fill, gray stroke
-  'Scenic': { fill: '#4CAF50', stroke: '#808080' }, // Green fill, gray stroke
+  'Restricted': { fill: '#ff4d4d', stroke: '#00008B' }, // Red fill, Dark Blue stroke
+  'High-Traffic': { fill: '#ffc107', stroke: '#00008B' }, // Yellow fill, Dark Blue stroke
+  'Scenic': { fill: '#4CAF50', stroke: '#00008B' }, // Green fill, Dark Blue stroke
 };
 
 // Helper to calculate center of a polygon
