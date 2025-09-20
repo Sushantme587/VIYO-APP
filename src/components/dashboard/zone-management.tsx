@@ -29,9 +29,9 @@ interface ZoneManagementProps {
 }
 
 const zoneTypeColors = {
-  'Restricted': { fill: '#ff4d4d', stroke: '#00008B' },
-  'High-Traffic': { fill: '#ffc107', stroke: '#00008B' },
-  'Scenic': { fill: '#4CAF50', stroke: '#00008B' },
+  'Restricted': { stroke: '#00008B' },
+  'High-Traffic': { stroke: '#00008B' },
+  'Scenic': { stroke: '#00008B' },
 };
 
 // Helper function to calculate the center of a polygon
@@ -60,9 +60,8 @@ function Polygons({ zones, selectedZone }: { zones: Zone[], selectedZone: Zone |
       const polygon = new google.maps.Polygon({
         paths: zone.path,
         map: map,
-        fillColor: colors.fill,
         strokeColor: colors.stroke,
-        fillOpacity: isSelected ? 0.5 : 0.3,
+        fillOpacity: 0,
         strokeWeight: isSelected ? 3 : 2,
       });
       

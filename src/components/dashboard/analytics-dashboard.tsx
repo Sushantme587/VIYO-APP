@@ -148,34 +148,34 @@ export default function AnalyticsDashboard() {
                 <CardDescription>Live count of tourists in each designated zone type.</CardDescription>
             </CardHeader>
             <CardContent className="grid gap-4 md:grid-cols-3">
-                <Card className="bg-destructive/10 border-destructive/30">
+                <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium text-destructive">Restricted Zones</CardTitle>
+                        <CardTitle className="text-sm font-medium">Restricted Zones</CardTitle>
                         <Shield className="h-5 w-5 text-destructive" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold text-destructive">{touristDistributionData.restricted}</div>
-                        <p className="text-xs text-destructive/80">tourists currently inside</p>
+                        <div className="text-3xl font-bold">{touristDistributionData.restricted}</div>
+                        <p className="text-xs text-muted-foreground">tourists currently inside</p>
                     </CardContent>
                 </Card>
-                <Card className="bg-accent/10 border-accent/30">
+                <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium text-accent-foreground/80">High-Traffic Zones</CardTitle>
-                        <TrafficCone className="h-5 w-5 text-accent-foreground/80" />
+                        <CardTitle className="text-sm font-medium">High-Traffic Zones</CardTitle>
+                        <TrafficCone className="h-5 w-5 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="text-3xl font-bold">{touristDistributionData.highTraffic}</div>
                         <p className="text-xs text-muted-foreground">tourists currently inside</p>
                     </CardContent>
                 </Card>
-                <Card className="bg-green-500/10 border-green-500/30">
+                <Card>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium text-green-600">Scenic Zones</CardTitle>
-                        <Trees className="h-5 w-5 text-green-600" />
+                        <CardTitle className="text-sm font-medium">Scenic Zones</CardTitle>
+                        <Trees className="h-5 w-5 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold text-green-700">{touristDistributionData.scenic}</div>
-                        <p className="text-xs text-green-600/80">tourists currently inside</p>
+                        <div className="text-3xl font-bold">{touristDistributionData.scenic}</div>
+                        <p className="text-xs text-muted-foreground">tourists currently inside</p>
                     </CardContent>
                 </Card>
             </CardContent>
