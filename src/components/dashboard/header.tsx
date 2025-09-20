@@ -22,6 +22,7 @@ import {
   ShieldCheck,
   LogOut,
   Settings,
+  LifeBuoy,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
@@ -89,7 +90,10 @@ export default function Header() {
               <span>Settings</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem>Support</DropdownMenuItem>
+          <DropdownMenuItem>
+             <LifeBuoy className="mr-2 h-4 w-4" />
+             <span>Support</span>
+          </DropdownMenuItem>
           <DropdownMenuSeparator />
            <DropdownMenuItem asChild>
               <Link href="/">
