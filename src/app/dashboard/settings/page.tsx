@@ -13,9 +13,18 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTheme } from "@/components/theme-provider";
+import { useToast } from "@/hooks/use-toast";
 
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
+  const { toast } = useToast();
+
+  const handleSaveMapSettings = () => {
+    toast({
+      title: "Settings Saved",
+      description: "Your map settings have been updated.",
+    });
+  };
 
   return (
     <div className="space-y-6">
@@ -133,8 +142,8 @@ export default function SettingsPage() {
                 <Label htmlFor="default-zoom">Default Zoom Level</Label>
                 <Input id="default-zoom" type="number" defaultValue="12" />
               </div>
-              <div className="flex items-center justify-between rounded-lg border p-4">
-                    <div className="space-y-0.5">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between rounded-lg border p-4">
+                    <div className="space-y-0.5 mb-4 sm:mb-0">
                         <Label htmlFor="traffic-layer" className="text-base">Show Traffic Layer</Label>
                         <p className="text-sm text-muted-foreground">
                             Overlay real-time traffic information on the map.
@@ -142,7 +151,7 @@ export default function SettingsPage() {
                     </div>
                     <Switch id="traffic-layer" />
                 </div>
-                <Button className="w-full sm:w-auto mt-2">Save Map Settings</Button>
+                <Button className="w-full sm:w-auto mt-2" onClick={handleSaveMapSettings}>Save Map Settings</Button>
             </CardContent>
           </Card>
         </TabsContent>
