@@ -35,3 +35,11 @@ export type PatrolUnit = {
   location: Location;
   status: 'Available' | 'On-duty' | 'Unavailable';
 };
+
+export type Zone = {
+  id: string;
+  name: string;
+  type: 'Restricted' | 'High-Traffic' | 'Scenic';
+  description: string;
+  path: Location[];
+};

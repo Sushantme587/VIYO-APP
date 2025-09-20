@@ -1,4 +1,4 @@
-import type { Tourist, PatrolUnit, Alert } from './types';
+import type { Tourist, PatrolUnit, Alert, Zone } from './types';
 
 export const tourists: Tourist[] = [
   {
@@ -82,4 +82,43 @@ export const initialAlerts: Alert[] = [
     details: 'SOS signal activated by the tourist.',
     status: 'Acknowledged',
   },
+];
+
+export const zones: Zone[] = [
+  {
+    id: 'zone-01',
+    name: 'Shillong Military Cantonment',
+    type: 'Restricted',
+    description: 'A high-security military zone. Civilian entry is prohibited without authorization.',
+    path: [
+      { lat: 25.585, lng: 91.900 },
+      { lat: 25.590, lng: 91.910 },
+      { lat: 25.580, lng: 91.915 },
+      { lat: 25.575, lng: 91.905 },
+    ]
+  },
+  {
+    id: 'zone-02',
+    name: 'Police Bazaar',
+    type: 'High-Traffic',
+    description: 'The main commercial hub of Shillong, experiences heavy footfall and traffic.',
+    path: [
+      { lat: 25.577, lng: 91.891 },
+      { lat: 25.579, lng: 91.894 },
+      { lat: 25.576, lng: 91.896 },
+      { lat: 25.574, lng: 91.893 },
+    ]
+  },
+    {
+    id: 'zone-03',
+    name: 'Umiam Lake Viewpoint',
+    type: 'Scenic',
+    description: 'A popular tourist spot offering panoramic views of Umiam Lake.',
+    path: [
+      { lat: 25.660, lng: 91.890 },
+      { lat: 25.665, lng: 91.892 },
+      { lat: 25.662, lng: 91.898 },
+      { lat: 25.658, lng: 91.893 },
+    ]
+  }
 ];
