@@ -1,12 +1,11 @@
 
 "use client"
 
-import { Bar, BarChart, CartesianGrid, XAxis, Line, LineChart, Pie, PieChart, Cell } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, Pie, PieChart } from "recharts"
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
