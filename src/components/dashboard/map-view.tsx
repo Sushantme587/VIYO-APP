@@ -42,6 +42,7 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
           defaultZoom={12}
           gestureHandling={'greedy'}
           disableDefaultUI={true}
+          mapId="suraksha-drishti-map"
         >
           {tourists.map((tourist) => {
             const location = tourist.locationHistory[tourist.locationHistory.length - 1];
