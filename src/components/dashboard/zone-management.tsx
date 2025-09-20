@@ -8,9 +8,20 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ShieldCheck, PlusCircle } from 'lucide-react';
+import { ShieldCheck, PlusCircle, Trash2 } from 'lucide-react';
 import { NewZoneModal } from './new-zone-modal';
 import { useToast } from '@/hooks/use-toast';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 interface ZoneManagementProps {
   initialZones: Zone[];
@@ -85,7 +96,6 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
     const zoneToAdd: Zone = {
       ...newZone,
       id: `zone-${Date.now()}`,
-      // For now, let's add a default path. In a real scenario, this would be drawn on the map.
       path: [
         { lat: mapCenter.lat + 0.005, lng: mapCenter.lng + 0.005 },
         { lat: mapCenter.lat + 0.005, lng: mapCenter.lng - 0.005 },
@@ -98,6 +108,19 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
     toast({
       title: 'Zone Created',
       description: `The new zone "${zoneToAdd.name}" has been added.`,
+    });
+  };
+
+  const handleDeleteZone = (zoneId: string) => {
+    const zoneToDelete = zones.find(z => z.id === zoneId);
+    setZones(prev => prev.filter(z => z.id !== zoneId));
+    if (selectedZone?.id === zoneId) {
+      setSelectedZone(zones.length > 1 ? zones.filter(z => z.id !== zoneId)[0] : null);
+    }
+    toast({
+      title: 'Zone Deleted',
+      description: `Zone "${zoneToDelete?.name}" has been removed.`,
+      variant: 'destructive',
     });
   };
 
@@ -139,13 +162,13 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
                 {zones.map(zone => (
                   <Card 
                     key={zone.id} 
-                    className={`cursor-pointer transition-all ${selectedZone?.id === zone.id ? 'border-primary' : ''}`}
+                    className={`cursor-pointer transition-all group relative ${selectedZone?.id === zone.id ? 'border-primary' : ''}`}
                     onClick={() => setSelectedZone(zone)}
                   >
                     <CardHeader className="p-4">
                       <CardTitle className="text-base flex justify-between items-center">
                         {zone.name}
-                        <Badge variant={
+                         <Badge variant={
                           zone.type === 'Restricted' ? 'destructive' : 
                           zone.type === 'High-Traffic' ? 'secondary' : 'default'
                         } style={zone.type === 'High-Traffic' ? {backgroundColor: 'hsl(var(--accent))'} : {}}>
@@ -154,6 +177,39 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
                       </CardTitle>
                       <CardDescription className="text-xs pt-1">{zone.description}</CardDescription>
                     </CardHeader>
+                     <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="absolute top-2 right-2 h-7 w-7 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                          <span className="sr-only">Delete Zone</span>
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently delete the <strong>{zone.name}</strong> zone.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleDeleteZone(zone.id);
+                            }}
+                            className="bg-destructive hover:bg-destructive/90"
+                          >
+                            Delete
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
                   </Card>
                 ))}
               </div>
