@@ -1,6 +1,7 @@
 "use server";
 
 import { identifyAnomalyPattern, type AnomalyPatternInput, type AnomalyPatternOutput } from "@/ai/flows/anomaly-pattern-identification";
+import { generateEFIR, type GenerateEFIRInput, type GenerateEFIROutput } from "@/ai/flows/generate-efir";
 
 export async function checkForAnomalies(input: AnomalyPatternInput): Promise<AnomalyPatternOutput> {
   try {
@@ -14,4 +15,9 @@ export async function checkForAnomalies(input: AnomalyPatternInput): Promise<Ano
       explanation: "AI analysis could not be completed.",
     };
   }
+}
+
+export async function generateEfirAction(input: GenerateEFIRInput): Promise<GenerateEFIROutput> {
+    const result = await generateEFIR(input);
+    return result;
 }
