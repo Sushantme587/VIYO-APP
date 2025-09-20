@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -14,6 +15,8 @@ import {
   Users,
   ShieldCheck,
   Settings,
+  MapPin,
+  FileText,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -21,6 +24,8 @@ const navItems = [
   { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { href: '/dashboard/analytics', icon: BarChart3, label: 'Analytics' },
   { href: '/dashboard/tourists', icon: Users, label: 'Tourists' },
+  { href: '/dashboard/firs', icon: FileText, label: 'Filed FIRs' },
+  { href: '/dashboard/zones', icon: MapPin, label: 'Zones' },
   { href: '/dashboard/settings', icon: Settings, label: 'Settings' },
 ];
 

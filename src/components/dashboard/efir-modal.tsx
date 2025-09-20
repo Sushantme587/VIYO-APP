@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -18,6 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import { generateEFIR } from '@/ai/flows/generate-efir';
 import { Loader2 } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
+import { useFIRs } from '@/contexts/fir-context';
 
 
 interface ERIFModalProps {
@@ -29,6 +31,7 @@ interface ERIFModalProps {
 
 export function ERIFModal({ isOpen, setIsOpen, alert, onGenerate }: ERIFModalProps) {
   const { toast } = useToast();
+  const { addFIR } = useFIRs();
   const [isLoading, setIsLoading] = useState(false);
   const [firText, setFirText] = useState('');
   const [isGenerated, setIsGenerated] = useState(false);
@@ -78,9 +81,16 @@ export function ERIFModal({ isOpen, setIsOpen, alert, onGenerate }: ERIFModalPro
   }
 
   const handleFileReport = () => {
+    addFIR({
+        alertId: alert.id,
+        touristName: alert.tourist.name,
+        incidentType: alert.type,
+        timestamp: alert.timestamp,
+        firText: firText,
+    });
     toast({
       title: "E-FIR Filed",
-      description: `E-FIR for incident #${alert.id} has been successfully logged.`,
+      description: `E-FIR for incident #${alert.id} has been logged.`,
     });
     onGenerate();
     handleClose();

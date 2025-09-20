@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider';
 import { MapSettingsProvider } from '@/contexts/map-settings-context';
+import { FIRProvider } from '@/contexts/fir-context';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -30,7 +31,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <MapSettingsProvider>
-            {children}
+            <FIRProvider>
+              {children}
+            </FIRProvider>
           </MapSettingsProvider>
           <Toaster />
         </ThemeProvider>

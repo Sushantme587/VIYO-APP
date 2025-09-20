@@ -43,3 +43,12 @@ export type Zone = {
   type: 'Restricted' | 'High-Traffic' | 'Scenic';
   path: { lat: number, lng: number }[];
 };
+
+export type FIR = {
+  id: string;
+  alertId: string;
+  touristName: string;
+  incidentType: string;
+  timestamp: string;
+  firText: string;
+}
