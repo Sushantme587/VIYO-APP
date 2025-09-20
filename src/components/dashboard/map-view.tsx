@@ -64,18 +64,18 @@ function ZonePolygons({ zones }: { zones: Zone[] }) {
 
     const polygonInstances: google.maps.Polygon[] = [];
 
-    zones.forEach(zone => {
-      const colors = zoneTypeColors[zone.type];
-      const polygon = new google.maps.Polygon({
-        paths: zone.path,
-        map: map,
-        strokeColor: colors.stroke,
-        fillOpacity: 0,
-        strokeWeight: 2,
-      });
+    // zones.forEach(zone => {
+    //   const colors = zoneTypeColors[zone.type];
+    //   const polygon = new google.maps.Polygon({
+    //     paths: zone.path,
+    //     map: map,
+    //     strokeColor: colors.stroke,
+    //     fillOpacity: 0,
+    //     strokeWeight: 2,
+    //   });
       
-      polygonInstances.push(polygon);
-    });
+    //   polygonInstances.push(polygon);
+    // });
 
     return () => {
       polygonInstances.forEach(p => p.setMap(null));
