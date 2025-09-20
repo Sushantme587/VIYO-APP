@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from 'next/link';
@@ -16,6 +15,7 @@ import {
   Settings,
   FileText,
   LifeBuoy,
+  ShieldCheck,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
