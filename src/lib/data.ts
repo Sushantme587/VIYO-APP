@@ -1,3 +1,4 @@
+
 import type { Tourist, PatrolUnit, Alert, Zone } from './types';
 
 export const tourists: Tourist[] = [
@@ -182,6 +183,136 @@ export const tourists: Tourist[] = [
       { latitude: 27.5851, longitude: 91.8643, timestamp: new Date(Date.now() - 500000).toISOString() },
       { latitude: 27.588, longitude: 91.867, timestamp: new Date().toISOString() },
     ],
+  },
+  {
+    id: 'TID-1111',
+    name: 'John Smith',
+    photoUrl: 'https://picsum.photos/seed/115/100/100',
+    photoHint: 'man tourist',
+    kyc: 'Passport: G******11',
+    itinerary: ['Shillong', 'Mawsynram'],
+    emergencyContacts: [{ name: 'Jane Smith', phone: '+1 1234567890' }],
+    locationHistory: [
+      { latitude: 25.5788, longitude: 91.8933, timestamp: '2023-10-27T10:00:00Z' },
+      { latitude: 25.2991, longitude: 91.5833, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-2222',
+    name: 'Emily Johnson',
+    photoUrl: 'https://picsum.photos/seed/116/100/100',
+    photoHint: 'woman tourist',
+    kyc: 'Passport: H******22',
+    itinerary: ['Guwahati', 'Tezpur'],
+    emergencyContacts: [{ name: 'Michael Johnson', phone: '+44 2079460958' }],
+    locationHistory: [
+      { latitude: 26.1445, longitude: 91.7362, timestamp: '2023-10-27T11:00:00Z' },
+      { latitude: 26.6369, longitude: 92.7923, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-3333',
+    name: 'Kenji Tanaka',
+    photoUrl: 'https://picsum.photos/seed/117/100/100',
+    photoHint: 'asian man',
+    kyc: 'Passport: J******33',
+    itinerary: ['Imphal', 'Moreh'],
+    emergencyContacts: [{ name: 'Yuki Tanaka', phone: '+81 3-1234-5678' }],
+    locationHistory: [
+      { latitude: 24.8170, longitude: 93.9368, timestamp: '2023-10-27T09:30:00Z' },
+      { latitude: 24.2407, longitude: 94.3093, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-4444',
+    name: 'Fatima Al-Fassi',
+    photoUrl: 'https://picsum.photos/seed/118/100/100',
+    photoHint: 'arab woman',
+    kyc: 'Passport: L******44',
+    itinerary: ['Aizawl', 'Champhai'],
+    emergencyContacts: [{ name: 'Youssef Al-Fassi', phone: '+971 501234567' }],
+    locationHistory: [
+      { latitude: 23.7271, longitude: 92.7176, timestamp: '2023-10-27T12:00:00Z' },
+      { latitude: 23.4667, longitude: 93.3333, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-5555',
+    name: 'Chloe Dubois',
+    photoUrl: 'https://picsum.photos/seed/119/100/100',
+    photoHint: 'french woman',
+    kyc: 'Passport: N******55',
+    itinerary: ['Gangtok', 'Nathu La Pass'],
+    emergencyContacts: [{ name: 'Lucas Dubois', phone: '+33 123456789' }],
+    locationHistory: [
+      { latitude: 27.3389, longitude: 88.6065, timestamp: '2023-10-27T08:00:00Z' },
+      { latitude: 27.3868, longitude: 88.8315, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-6666',
+    name: 'David Miller',
+    photoUrl: 'https://picsum.photos/seed/120/100/100',
+    photoHint: 'caucasian man',
+    kyc: 'Passport: P******66',
+    itinerary: ['Agartala', 'Jampui Hills'],
+    emergencyContacts: [{ name: 'Sarah Miller', phone: '+1 9876543210' }],
+    locationHistory: [
+      { latitude: 23.8315, longitude: 91.2868, timestamp: '2023-10-27T14:00:00Z' },
+      { latitude: 24.0333, longitude: 92.2667, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-7777',
+    name: 'Ibrahim Cissé',
+    photoUrl: 'https://picsum.photos/seed/121/100/100',
+    photoHint: 'african man',
+    kyc: 'Passport: R******77',
+    itinerary: ['Kohima', 'Dzukou Valley'],
+    emergencyContacts: [{ name: 'Awa Cissé', phone: '+221 771234567' }],
+    locationHistory: [
+      { latitude: 25.6751, longitude: 94.1022, timestamp: '2023-10-27T13:00:00Z' },
+      { latitude: 25.565, longitude: 94.015, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-8888',
+    name: 'Sofia Rossi',
+    photoUrl: 'https://picsum.photos/seed/122/100/100',
+    photoHint: 'italian woman',
+    kyc: 'Passport: T******88',
+    itinerary: ['Darjeeling', 'Sandakphu'],
+    emergencyContacts: [{ name: 'Marco Rossi', phone: '+39 0123456789' }],
+    locationHistory: [
+      { latitude: 27.0410, longitude: 88.2663, timestamp: '2023-10-27T07:00:00Z' },
+      { latitude: 27.106, longitude: 88.002, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-9999',
+    name: 'Liam Murphy',
+    photoUrl: 'https://picsum.photos/seed/123/100/100',
+    photoHint: 'irish man',
+    kyc: 'Passport: V******99',
+    itinerary: ['Shillong', 'Laitlum Canyons'],
+    emergencyContacts: [{ name: 'Fiona Murphy', phone: '+353 1234567' }],
+    locationHistory: [
+      { latitude: 25.5788, longitude: 91.8933, timestamp: '2023-10-27T15:00:00Z' },
+      { latitude: 25.539, longitude: 91.956, timestamp: new Date().toISOString() }
+    ]
+  },
+  {
+    id: 'TID-1010',
+    name: 'Isabella Costa',
+    photoUrl: 'https://picsum.photos/seed/124/100/100',
+    photoHint: 'brazilian woman',
+    kyc: 'Passport: X******10',
+    itinerary: ['Guwahati', 'Pobitora Wildlife Sanctuary'],
+    emergencyContacts: [{ name: 'Lucas Costa', phone: '+55 11987654321' }],
+    locationHistory: [
+      { latitude: 26.1445, longitude: 91.7362, timestamp: '2023-10-27T16:00:00Z' },
+      { latitude: 26.2167, longitude: 92.0667, timestamp: new Date().toISOString() }
+    ]
   }
 ];
 
@@ -222,8 +353,11 @@ export const zones: Zone[] = [
     description: 'A high-security military zone. Civilian entry is prohibited without authorization.',
     path: [
       { lat: 25.585, lng: 91.900 },
+      { lat: 25.587, lng: 91.905 },
       { lat: 25.590, lng: 91.910 },
+      { lat: 25.585, lng: 91.916 },
       { lat: 25.580, lng: 91.915 },
+      { lat: 25.578, lng: 91.910 },
       { lat: 25.575, lng: 91.905 },
     ]
   },
@@ -234,8 +368,11 @@ export const zones: Zone[] = [
     description: 'The main commercial hub of Shillong, experiences heavy footfall and traffic.',
     path: [
       { lat: 25.577, lng: 91.891 },
-      { lat: 25.579, lng: 91.894 },
+      { lat: 25.579, lng: 91.892 },
+      { lat: 25.5795, lng: 91.894 },
+      { lat: 25.578, lng: 91.895 },
       { lat: 25.576, lng: 91.896 },
+      { lat: 25.574, lng: 91.895 },
       { lat: 25.574, lng: 91.893 },
     ]
   },
@@ -246,8 +383,11 @@ export const zones: Zone[] = [
     description: 'A popular tourist spot offering panoramic views of Umiam Lake.',
     path: [
       { lat: 25.660, lng: 91.890 },
+      { lat: 25.663, lng: 91.888 },
       { lat: 25.665, lng: 91.892 },
+      { lat: 25.664, lng: 91.896 },
       { lat: 25.662, lng: 91.898 },
+      { lat: 25.658, lng: 91.895 },
       { lat: 25.658, lng: 91.893 },
     ]
   }

@@ -1,3 +1,4 @@
+
 {
   "placeholderImages": [
     {
@@ -83,6 +84,66 @@
       "description": "Portrait of Reyansh Thakur",
       "imageUrl": "https://picsum.photos/seed/114/100/100",
       "imageHint": "man backpack"
+    },
+    {
+      "id": "tourist-15",
+      "description": "Portrait of John Smith",
+      "imageUrl": "https://picsum.photos/seed/115/100/100",
+      "imageHint": "man tourist"
+    },
+    {
+      "id": "tourist-16",
+      "description": "Portrait of Emily Johnson",
+      "imageUrl": "https://picsum.photos/seed/116/100/100",
+      "imageHint": "woman tourist"
+    },
+    {
+      "id": "tourist-17",
+      "description": "Portrait of Kenji Tanaka",
+      "imageUrl": "https://picsum.photos/seed/117/100/100",
+      "imageHint": "asian man"
+    },
+    {
+      "id": "tourist-18",
+      "description": "Portrait of Fatima Al-Fassi",
+      "imageUrl": "https://picsum.photos/seed/118/100/100",
+      "imageHint": "arab woman"
+    },
+    {
+      "id": "tourist-19",
+      "description": "Portrait of Chloe Dubois",
+      "imageUrl": "https://picsum.photos/seed/119/100/100",
+      "imageHint": "french woman"
+    },
+    {
+      "id": "tourist-20",
+      "description": "Portrait of David Miller",
+      "imageUrl": "https://picsum.photos/seed/120/100/100",
+      "imageHint": "caucasian man"
+    },
+    {
+      "id": "tourist-21",
+      "description": "Portrait of Ibrahim Cissé",
+      "imageUrl": "https://picsum.photos/seed/121/100/100",
+      "imageHint": "african man"
+    },
+    {
+      "id": "tourist-22",
+      "description": "Portrait of Sofia Rossi",
+      "imageUrl": "https://picsum.photos/seed/122/100/100",
+      "imageHint": "italian woman"
+    },
+    {
+      "id": "tourist-23",
+      "description": "Portrait of Liam Murphy",
+      "imageUrl": "https://picsum.photos/seed/123/100/100",
+      "imageHint": "irish man"
+    },
+    {
+      "id": "tourist-24",
+      "description": "Portrait of Isabella Costa",
+      "imageUrl": "https://picsum.photos/seed/124/100/100",
+      "imageHint": "brazilian woman"
     },
      {
       "id": "user-avatar",
