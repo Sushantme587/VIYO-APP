@@ -14,7 +14,6 @@ import {
   Users,
   ShieldCheck,
   Settings,
-  Globe,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +21,6 @@ const navItems = [
   { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { href: '/dashboard/analytics', icon: BarChart3, label: 'Analytics' },
   { href: '/dashboard/tourists', icon: Users, label: 'Tourists' },
-  { href: '/dashboard/zones', icon: Globe, label: 'Zones' },
   { href: '/dashboard/settings', icon: Settings, label: 'Settings' },
 ];
 

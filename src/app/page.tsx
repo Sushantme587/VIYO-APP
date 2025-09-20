@@ -12,20 +12,10 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { ShieldCheck } from "lucide-react"
-import { useAssignedZone } from "@/contexts/assigned-zone-context";
-import { zones } from "@/lib/data";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { setZoneId } = useAssignedZone();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,7 +36,7 @@ export default function LoginPage() {
           </div>
           <CardTitle className="text-2xl">Officer Login</CardTitle>
           <CardDescription>
-            Enter your credentials and select your assigned zone.
+            Enter your credentials to access the dashboard.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -73,20 +63,6 @@ export default function LoginPage() {
                   </Link>
                 </div>
                 <Input id="password" type="password" required defaultValue="password" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="assigned-zone">Assigned Zone (Optional)</Label>
-                 <Select onValueChange={setZoneId}>
-                  <SelectTrigger id="assigned-zone">
-                    <SelectValue placeholder="Select a zone to focus on..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="none">None (Global View)</SelectItem>
-                    {zones.map(zone => (
-                      <SelectItem key={zone.id} value={zone.id}>{zone.name}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
               </div>
               <Button type="submit" className="w-full">
                 Login

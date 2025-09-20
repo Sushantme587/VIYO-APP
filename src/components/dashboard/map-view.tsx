@@ -2,40 +2,22 @@
 "use client";
 
 import { Map, Marker, InfoWindow, APIProvider, useMap } from '@vis.gl/react-google-maps';
-import type { Tourist, PatrolUnit, Zone } from '@/lib/types';
+import type { Tourist, PatrolUnit } from '@/lib/types';
 import { useState, useEffect } from 'react';
 import { Card } from '../ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Phone, MapPin, ShieldCheck } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
-import { useMapSettings } from '@/contexts/map-settings-context';
-import { useAssignedZone } from '@/contexts/assigned-zone-context';
 
 interface MapViewProps {
   tourists: Tourist[];
   patrolUnits: PatrolUnit[];
-  zones: Zone[];
-}
-
-const zoneTypeColors = {
-  'Restricted': { stroke: '#00008B' },
-  'High-Traffic': { stroke: '#00008B' },
-  'Scenic': { stroke: '#00008B' },
-};
-
-// Helper to calculate center of a polygon
-const getPolygonCenter = (path: { lat: number; lng: number }[]) => {
-    if (!path || path.length === 0) return { lat: 25.5788, lng: 91.8933 }; // Default center
-    const bounds = new google.maps.LatLngBounds();
-    path.forEach(point => bounds.extend(new google.maps.LatLng(point.lat, point.lng)));
-    const center = bounds.getCenter();
-    return { lat: center.lat(), lng: center.lng() };
 }
 
 // Helper component to manage the traffic layer
 function Traffic() {
   const map = useMap();
-  const { showTraffic } = useMapSettings();
+  const [showTraffic] = useState(false); // Hardcoded for now, can be moved to context
 
   useEffect(() => {
     if (!map) return;
@@ -55,44 +37,11 @@ function Traffic() {
   return null;
 }
 
-// Helper component to draw polygons for zones
-function ZonePolygons({ zones }: { zones: Zone[] }) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!map || !zones.length) return;
-
-    const polygonInstances: google.maps.Polygon[] = [];
-
-    // zones.forEach(zone => {
-    //   const colors = zoneTypeColors[zone.type];
-    //   const polygon = new google.maps.Polygon({
-    //     paths: zone.path,
-    //     map: map,
-    //     strokeColor: colors.stroke,
-    //     fillOpacity: 0,
-    //     strokeWeight: 2,
-    //   });
-      
-    //   polygonInstances.push(polygon);
-    // });
-
-    return () => {
-      polygonInstances.forEach(p => p.setMap(null));
-    };
-
-  }, [map, zones]);
-
-  return null;
-}
-
-export default function MapView({ tourists, patrolUnits, zones }: MapViewProps) {
+export default function MapView({ tourists, patrolUnits }: MapViewProps) {
   const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
-  const { zoneId } = useAssignedZone();
 
-  const assignedZone = zones.find(z => z.id === zoneId);
-  const center = assignedZone ? getPolygonCenter(assignedZone.path) : { lat: 25.5788, lng: 91.8933 };
-  const initialZoom = assignedZone ? 14 : 12;
+  const center = { lat: 25.5788, lng: 91.8933 };
+  const initialZoom = 12;
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -114,7 +63,6 @@ export default function MapView({ tourists, patrolUnits, zones }: MapViewProps) 
     <Card className="h-full w-full">
       <APIProvider apiKey={apiKey}>
         <Map
-          key={zoneId} // Re-center map when zone changes
           style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
           defaultCenter={center}
           defaultZoom={initialZoom}
@@ -126,7 +74,6 @@ export default function MapView({ tourists, patrolUnits, zones }: MapViewProps) 
           mapId="suraksha-drishti-map"
         >
           <Traffic />
-          <ZonePolygons zones={zones} />
 
           {tourists.map((tourist) => {
             const location = tourist.locationHistory[tourist.locationHistory.length - 1];

@@ -14,12 +14,10 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTheme } from "@/components/theme-provider";
 import { useToast } from "@/hooks/use-toast";
-import { useMapSettings } from "@/contexts/map-settings-context";
 
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
   const { toast } = useToast();
-  const { showTraffic, setShowTraffic } = useMapSettings();
 
   const handleSaveMapSettings = () => {
     toast({
@@ -153,8 +151,6 @@ export default function SettingsPage() {
                     </div>
                     <Switch 
                         id="traffic-layer" 
-                        checked={showTraffic}
-                        onCheckedChange={setShowTraffic}
                     />
                 </div>
                 <Button className="w-full sm:w-auto mt-2" onClick={handleSaveMapSettings}>Save Map Settings</Button>

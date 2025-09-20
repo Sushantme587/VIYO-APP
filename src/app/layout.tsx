@@ -3,7 +3,6 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider';
-import { AssignedZoneProvider } from '@/contexts/assigned-zone-context';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -29,9 +28,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AssignedZoneProvider>
             {children}
-          </AssignedZoneProvider>
           <Toaster />
         </ThemeProvider>
       </body>

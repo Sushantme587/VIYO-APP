@@ -1,5 +1,5 @@
 
-import type { Tourist, PatrolUnit, Alert, Zone } from './types';
+import type { Tourist, PatrolUnit, Alert } from './types';
 
 export const tourists: Tourist[] = [
   {
@@ -474,64 +474,3 @@ export const initialAlerts: Alert[] = [
     status: 'Acknowledged',
   },
 ];
-
-export const zones: Zone[] = [
-  {
-    id: 'zone-01',
-    name: 'Shillong Military Cantonment',
-    type: 'Restricted',
-    description: 'A high-security military zone. Civilian entry is prohibited without authorization.',
-    path: [
-      {lat: 25.5925, lng: 91.9056},
-      {lat: 25.5913, lng: 91.9092},
-      {lat: 25.5901, lng: 91.9123},
-      {lat: 25.5885, lng: 91.9150},
-      {lat: 25.5860, lng: 91.9168},
-      {lat: 25.5833, lng: 91.9167},
-      {lat: 25.5811, lng: 91.9152},
-      {lat: 25.5794, lng: 91.9125},
-      {lat: 25.5786, lng: 91.9095},
-      {lat: 25.5791, lng: 91.9061},
-      {lat: 25.5808, lng: 91.9034},
-      {lat: 25.5839, lng: 91.9015},
-      {lat: 25.5872, lng: 91.9018},
-      {lat: 25.5905, lng: 91.9033}
-    ]
-  },
-  {
-    id: 'zone-02',
-    name: 'Police Bazaar',
-    type: 'High-Traffic',
-    description: 'The main commercial hub of Shillong, experiences heavy footfall and traffic.',
-    path: [
-      {lat: 25.5782, lng: 91.8914},
-      {lat: 25.5794, lng: 91.8923},
-      {lat: 25.5788, lng: 91.8935},
-      {lat: 25.5797, lng: 91.8948},
-      {lat: 25.5785, lng: 91.8960},
-      {lat: 25.5771, lng: 91.8951},
-      {lat: 25.5778, lng: 91.8938},
-      {lat: 25.5769, lng: 91.8926},
-    ]
-  },
-  {
-    id: 'zone-03',
-    name: 'Umiam Lake Viewpoint',
-    type: 'Scenic',
-    description: 'A popular tourist spot offering panoramic views of Umiam Lake.',
-    path: [
-        {lat: 25.6784, lng: 91.8943},
-        {lat: 25.6775, lng: 91.8961},
-        {lat: 25.6760, lng: 91.8979},
-        {lat: 25.6742, lng: 91.8986},
-        {lat: 25.6725, lng: 91.8980},
-        {lat: 25.6711, lng: 91.8965},
-        {lat: 25.6704, lng: 91.8944},
-        {lat: 25.6713, lng: 91.8926},
-        {lat: 25.6730, lng: 91.8912},
-        {lat: 25.6752, lng: 91.8909},
-        {lat: 25.6773, lng: 91.8919}
-    ]
-  }
-];
-
