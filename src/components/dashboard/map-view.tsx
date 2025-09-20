@@ -5,7 +5,7 @@ import type { Tourist, PatrolUnit } from '@/lib/types';
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Phone, User, MapPin } from 'lucide-react';
+import { Phone, User, MapPin, ShieldCheck } from 'lucide-react';
 import { Badge } from '../ui/badge';
 
 interface MapViewProps {
