@@ -19,7 +19,7 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
   const center = { lat: 25.5788, lng: 91.8933 }; // Shillong as default center
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-  if (!apiKey || apiKey === 'YOUR_API_KEY_HERE') {
+  if (!apiKey) {
     return (
         <Card className="h-full w-full flex items-center justify-center">
             <Alert variant="destructive" className="w-auto">
