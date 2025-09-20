@@ -29,12 +29,16 @@ interface TouristManagementProps {
 
 export default function TouristManagement({ tourists }: TouristManagementProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
+  const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(tourists[0] || null);
 
   const filteredTourists = tourists.filter(t => 
     t.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     t.id.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleSelectTourist = (tourist: Tourist) => {
+    setSelectedTourist(tourist);
+  };
 
   return (
     <div className="grid gap-6 md:grid-cols-3">
@@ -65,7 +69,7 @@ export default function TouristManagement({ tourists }: TouristManagementProps) 
               </TableHeader>
               <TableBody>
                 {filteredTourists.map((tourist) => (
-                  <TableRow key={tourist.id} className="cursor-pointer" onClick={() => setSelectedTourist(tourist)}>
+                  <TableRow key={tourist.id} className="cursor-pointer" onClick={() => handleSelectTourist(tourist)}>
                     <TableCell>
                       <div className="flex items-center gap-3">
                         <Avatar>
@@ -78,7 +82,7 @@ export default function TouristManagement({ tourists }: TouristManagementProps) 
                     <TableCell>{tourist.id}</TableCell>
                     <TableCell>{tourist.itinerary.join(', ')}</TableCell>
                     <TableCell className="text-right">
-                      <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); setSelectedTourist(tourist); }}>
+                      <Button variant="outline" size="sm" onClick={(e) => { e.stopPropagation(); handleSelectTourist(tourist); }}>
                         View Profile
                       </Button>
                     </TableCell>
@@ -90,7 +94,18 @@ export default function TouristManagement({ tourists }: TouristManagementProps) 
         </Card>
       </div>
       <div className="md:col-span-1">
-        <TouristProfileCard tourist={selectedTourist || tourists[0]} />
+        {selectedTourist ? (
+          <TouristProfileCard tourist={selectedTourist} />
+        ) : (
+          <Card>
+            <CardHeader>
+              <CardTitle>No Tourist Selected</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Please select a tourist from the list to view their profile.</p>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   );
