@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import {
   Dialog,
   DialogContent,
@@ -55,7 +56,7 @@ export function DispatchModal({ isOpen, setIsOpen, alert, onDispatch }: Dispatch
         </DialogHeader>
         <div className="py-4">
           <RadioGroup onValueChange={setSelectedUnit} className="grid gap-4">
-            {patrolUnits.filter(u => u.status === 'Available').map(unit => (
+            {patrolUnits.filter(u => u.status === 'Available' || u.status === 'On-duty').map(unit => (
               <Label key={unit.id} htmlFor={unit.id} className="flex items-center gap-4 rounded-md border p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary">
                 <ShieldCheck className="h-6 w-6 text-green-600" />
                 <div className="flex-1">
