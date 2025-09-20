@@ -2,7 +2,7 @@
 "use client";
 
 import { Map, Marker, InfoWindow, APIProvider, useMap } from '@vis.gl/react-google-maps';
-import type { Tourist, PatrolUnit } from '@/lib/types';
+import type { Tourist, PatrolUnit, Zone } from '@/lib/types';
 import { useState, useEffect } from 'react';
 import { Card } from '../ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -13,7 +13,14 @@ import { useMapSettings } from '@/contexts/map-settings-context';
 interface MapViewProps {
   tourists: Tourist[];
   patrolUnits: PatrolUnit[];
+  zones: Zone[];
 }
+
+const zoneTypeColors = {
+  'Restricted': { fill: '#ff4d4d', stroke: '#cc0000' }, // Red
+  'High-Traffic': { fill: '#ffc107', stroke: '#e69500' }, // Yellow
+  'Scenic': { fill: '#4CAF50', stroke: '#388E3C' }, // Green
+};
 
 // Helper component to manage the traffic layer
 function Traffic() {
@@ -31,7 +38,6 @@ function Traffic() {
     }
 
     return () => {
-      // Cleanup: remove the layer when the component unmounts or settings change
       trafficLayer.setMap(null);
     };
   }, [map, showTraffic]);
@@ -39,8 +45,39 @@ function Traffic() {
   return null;
 }
 
+// Helper component to draw polygons for zones
+function ZonePolygons({ zones }: { zones: Zone[] }) {
+  const map = useMap();
 
-export default function MapView({ tourists, patrolUnits }: MapViewProps) {
+  useEffect(() => {
+    if (!map || !zones.length) return;
+
+    const polygonInstances: google.maps.Polygon[] = [];
+
+    zones.forEach(zone => {
+      const colors = zoneTypeColors[zone.type];
+      const polygon = new google.maps.Polygon({
+        paths: zone.path,
+        map: map,
+        fillColor: colors.fill,
+        strokeColor: colors.stroke,
+        fillOpacity: 0.3,
+        strokeWeight: 2,
+      });
+      
+      polygonInstances.push(polygon);
+    });
+
+    return () => {
+      polygonInstances.forEach(p => p.setMap(null));
+    };
+
+  }, [map, zones]);
+
+  return null;
+}
+
+export default function MapView({ tourists, patrolUnits, zones }: MapViewProps) {
   const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
 
   const center = { lat: 25.5788, lng: 91.8933 }; // Shillong as default center
@@ -72,6 +109,7 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
           mapId="suraksha-drishti-map"
         >
           <Traffic />
+          <ZonePolygons zones={zones} />
 
           {tourists.map((tourist) => {
             const location = tourist.locationHistory[tourist.locationHistory.length - 1];
