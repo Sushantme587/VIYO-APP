@@ -313,6 +313,136 @@ export const tourists: Tourist[] = [
       { latitude: 26.1445, longitude: 91.7362, timestamp: '2023-10-27T16:00:00Z' },
       { latitude: 26.2167, longitude: 92.0667, timestamp: new Date().toISOString() }
     ]
+  },
+  {
+    id: 'TID-1357',
+    name: 'Wei Chen',
+    photoUrl: 'https://picsum.photos/seed/125/100/100',
+    photoHint: 'chinese man',
+    kyc: 'Passport: Y******11',
+    itinerary: ['Kolkata', 'Darjeeling'],
+    emergencyContacts: [{ name: 'Lin Chen', phone: '+86 13800138000' }],
+    locationHistory: [
+        { latitude: 22.5726, longitude: 88.3639, timestamp: new Date(Date.now() - 4800000).toISOString() },
+        { latitude: 22.5750, longitude: 88.3650, timestamp: new Date().toISOString() },
+    ]
+  },
+  {
+      id: 'TID-2468',
+      name: 'Olga Petrova',
+      photoUrl: 'https://picsum.photos/seed/126/100/100',
+      photoHint: 'russian woman',
+      kyc: 'Passport: Z******22',
+      itinerary: ['Delhi', 'Agra', 'Jaipur'],
+      emergencyContacts: [{ name: 'Dmitri Petrov', phone: '+7 9161234567' }],
+      locationHistory: [
+          { latitude: 28.6139, longitude: 77.2090, timestamp: new Date(Date.now() - 7200000).toISOString() },
+          { latitude: 28.6150, longitude: 77.2100, timestamp: new Date().toISOString() },
+      ]
+  },
+  {
+      id: 'TID-9753',
+      name: 'Javier García',
+      photoUrl: 'https://picsum.photos/seed/127/100/100',
+      photoHint: 'spanish man',
+      kyc: 'Passport: A******33',
+      itinerary: ['Mumbai', 'Goa'],
+      emergencyContacts: [{ name: 'Sofia García', phone: '+34 600123456' }],
+      locationHistory: [
+          { latitude: 19.0760, longitude: 72.8777, timestamp: new Date(Date.now() - 2400000).toISOString() },
+          { latitude: 19.0780, longitude: 72.8790, timestamp: new Date().toISOString() },
+      ]
+  },
+  {
+      id: 'TID-8642',
+      name: 'Aisha Mohammed',
+      photoUrl: 'https://picsum.photos/seed/128/100/100',
+      photoHint: 'nigerian woman',
+      kyc: 'Passport: B******44',
+      itinerary: ['Lagos', 'Abuja'],
+      emergencyContacts: [{ name: 'Musa Mohammed', phone: '+234 8021234567' }],
+      locationHistory: [
+          { latitude: 6.5244, longitude: 3.3792, timestamp: new Date(Date.now() - 9600000).toISOString() },
+          { latitude: 6.5260, longitude: 3.3800, timestamp: new Date().toISOString() },
+      ]
+  },
+  {
+      id: 'TID-1928',
+      name: 'Hans Müller',
+      photoUrl: 'https://picsum.photos/seed/129/100/100',
+      photoHint: 'german man',
+      kyc: 'Passport: C******55',
+      itinerary: ['Berlin', 'Munich', 'Hamburg'],
+      emergencyContacts: [{ name: 'Greta Müller', phone: '+49 17612345678' }],
+      locationHistory: [
+          { latitude: 52.5200, longitude: 13.4050, timestamp: new Date(Date.now() - 1200000).toISOString() },
+          { latitude: 52.5220, longitude: 13.4070, timestamp: new Date().toISOString() },
+      ]
+  },
+  {
+      id: 'TID-3746',
+      name: 'Ji-Hoon Kim',
+      photoUrl: 'https://picsum.photos/seed/130/100/100',
+      photoHint: 'korean man',
+      kyc: 'Passport: D******66',
+      itinerary: ['Seoul', 'Busan'],
+      emergencyContacts: [{ name: 'Soo-Jin Kim', phone: '+82 1012345678' }],
+      locationHistory: [
+          { latitude: 37.5665, longitude: 126.9780, timestamp: new Date(Date.now() - 6000000).toISOString() },
+          { latitude: 37.5680, longitude: 126.9800, timestamp: new Date().toISOString() },
+      ]
+  },
+  {
+      id: 'TID-5867',
+      name: 'Fatima Khan',
+      photoUrl: 'https://picsum.photos/seed/131/100/100',
+      photoHint: 'pakistani woman',
+      kyc: 'Passport: E******77',
+      itinerary: ['Karachi', 'Lahore'],
+      emergencyContacts: [{ name: 'Ali Khan', phone: '+92 3001234567' }],
+      locationHistory: [
+          { latitude: 24.8607, longitude: 67.0011, timestamp: new Date(Date.now() - 8400000).toISOString() },
+          { latitude: 24.8620, longitude: 67.0030, timestamp: new Date().toISOString() },
+      ]
+  },
+  {
+      id: 'TID-4958',
+      name: 'Mohammed Al-Mansoori',
+      photoUrl: 'https://picsum.photos/seed/132/100/100',
+      photoHint: 'emirati man',
+      kyc: 'Passport: F******88',
+      itinerary: ['Dubai', 'Abu Dhabi'],
+      emergencyContacts: [{ name: 'Aisha Al-Mansoori', phone: '+971 501234567' }],
+      locationHistory: [
+          { latitude: 25.2048, longitude: 55.2708, timestamp: new Date(Date.now() - 3600000).toISOString() },
+          { latitude: 25.2060, longitude: 55.2720, timestamp: new Date().toISOString() },
+      ]
+  },
+  {
+      id: 'TID-6079',
+      name: 'Olivia Williams',
+      photoUrl: 'https://picsum.photos/seed/133/100/100',
+      photoHint: 'australian woman',
+      kyc: 'Passport: G******99',
+      itinerary: ['Sydney', 'Melbourne'],
+      emergencyContacts: [{ name: 'Jack Williams', phone: '+61 412345678' }],
+      locationHistory: [
+          { latitude: -33.8688, longitude: 151.2093, timestamp: new Date(Date.now() - 10800000).toISOString() },
+          { latitude: -33.8670, longitude: 151.2100, timestamp: new Date().toISOString() },
+      ]
+  },
+  {
+      id: 'TID-8190',
+      name: 'Takeshi Yamamoto',
+      photoUrl: 'https://picsum.photos/seed/134/100/100',
+      photoHint: 'japanese man',
+      kyc: 'Passport: H******00',
+      itinerary: ['Tokyo', 'Kyoto', 'Osaka'],
+      emergencyContacts: [{ name: 'Yumi Yamamoto', phone: '+81 9012345678' }],
+      locationHistory: [
+          { latitude: 35.6895, longitude: 139.6917, timestamp: new Date(Date.now() - 12000000).toISOString() },
+          { latitude: 35.6900, longitude: 139.6930, timestamp: new Date().toISOString() },
+      ]
   }
 ];
 
@@ -352,13 +482,20 @@ export const zones: Zone[] = [
     type: 'Restricted',
     description: 'A high-security military zone. Civilian entry is prohibited without authorization.',
     path: [
-      { lat: 25.585, lng: 91.900 },
-      { lat: 25.587, lng: 91.905 },
-      { lat: 25.590, lng: 91.910 },
-      { lat: 25.585, lng: 91.916 },
-      { lat: 25.580, lng: 91.915 },
-      { lat: 25.578, lng: 91.910 },
-      { lat: 25.575, lng: 91.905 },
+      {lat: 25.5925, lng: 91.9056},
+      {lat: 25.5913, lng: 91.9092},
+      {lat: 25.5901, lng: 91.9123},
+      {lat: 25.5885, lng: 91.9150},
+      {lat: 25.5860, lng: 91.9168},
+      {lat: 25.5833, lng: 91.9167},
+      {lat: 25.5811, lng: 91.9152},
+      {lat: 25.5794, lng: 91.9125},
+      {lat: 25.5786, lng: 91.9095},
+      {lat: 25.5791, lng: 91.9061},
+      {lat: 25.5808, lng: 91.9034},
+      {lat: 25.5839, lng: 91.9015},
+      {lat: 25.5872, lng: 91.9018},
+      {lat: 25.5905, lng: 91.9033}
     ]
   },
   {
@@ -367,28 +504,34 @@ export const zones: Zone[] = [
     type: 'High-Traffic',
     description: 'The main commercial hub of Shillong, experiences heavy footfall and traffic.',
     path: [
-      { lat: 25.577, lng: 91.891 },
-      { lat: 25.579, lng: 91.892 },
-      { lat: 25.5795, lng: 91.894 },
-      { lat: 25.578, lng: 91.895 },
-      { lat: 25.576, lng: 91.896 },
-      { lat: 25.574, lng: 91.895 },
-      { lat: 25.574, lng: 91.893 },
+      {lat: 25.5782, lng: 91.8914},
+      {lat: 25.5794, lng: 91.8923},
+      {lat: 25.5788, lng: 91.8935},
+      {lat: 25.5797, lng: 91.8948},
+      {lat: 25.5785, lng: 91.8960},
+      {lat: 25.5771, lng: 91.8951},
+      {lat: 25.5778, lng: 91.8938},
+      {lat: 25.5769, lng: 91.8926},
     ]
   },
-    {
+  {
     id: 'zone-03',
     name: 'Umiam Lake Viewpoint',
     type: 'Scenic',
     description: 'A popular tourist spot offering panoramic views of Umiam Lake.',
     path: [
-      { lat: 25.660, lng: 91.890 },
-      { lat: 25.663, lng: 91.888 },
-      { lat: 25.665, lng: 91.892 },
-      { lat: 25.664, lng: 91.896 },
-      { lat: 25.662, lng: 91.898 },
-      { lat: 25.658, lng: 91.895 },
-      { lat: 25.658, lng: 91.893 },
+        {lat: 25.6784, lng: 91.8943},
+        {lat: 25.6775, lng: 91.8961},
+        {lat: 25.6760, lng: 91.8979},
+        {lat: 25.6742, lng: 91.8986},
+        {lat: 25.6725, lng: 91.8980},
+        {lat: 25.6711, lng: 91.8965},
+        {lat: 25.6704, lng: 91.8944},
+        {lat: 25.6713, lng: 91.8926},
+        {lat: 25.6730, lng: 91.8912},
+        {lat: 25.6752, lng: 91.8909},
+        {lat: 25.6773, lng: 91.8919}
     ]
   }
 ];
+
