@@ -1,4 +1,3 @@
-
 "use client";
 
 import { Map, Marker, InfoWindow, APIProvider, useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
@@ -102,8 +101,8 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
   const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
   const { showTraffic } = useMapSettings();
 
-  const center = { lat: 25.5788, lng: 91.8933 };
-  const initialZoom = 12;
+  const center = { lat: 20.5937, lng: 78.9629 };
+  const initialZoom = 5;
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -151,7 +150,7 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
           
           <ZonePolygons zonesData={zones} />
 
-          {tourists.map((tourist) => {
+          {touristsInIndia.map((tourist) => {
             const location = tourist.locationHistory[tourist.locationHistory.length - 1];
             return (
               <Marker
