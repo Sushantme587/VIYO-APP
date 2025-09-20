@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "tourist-1",
+      "description": "Portrait of Aarav Sharma",
+      "imageUrl": "https://picsum.photos/seed/101/100/100",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "tourist-2",
+      "description": "Portrait of Saanvi Gupta",
+      "imageUrl": "https://picsum.photos/seed/102/100/100",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "tourist-3",
+      "description": "Portrait of Vivaan Singh",
+      "imageUrl": "https://picsum.photos/seed/103/100/100",
+      "imageHint": "young man"
+    },
+    {
+      "id": "tourist-4",
+      "description": "Portrait of Diya Patel",
+      "imageUrl": "https://picsum.photos/seed/104/100/100",
+      "imageHint": "woman smiling"
+    },
+     {
+      "id": "user-avatar",
+      "description": "Avatar for the logged-in user",
+      "imageUrl": "https://picsum.photos/seed/user/100/100",
+      "imageHint": "officer portrait"
+    }
+  ]
 }
