@@ -75,10 +75,10 @@ function ZonePolygons({ zonesData }: { zonesData: Zone[] }) {
     const polygons = zonesData.map(zone => {
       return new google.maps.Polygon({
         paths: zone.path,
-        strokeColor: '#3F51B5',
+        strokeColor: '#00008B',
         strokeOpacity: 0.8,
         strokeWeight: 2,
-        fillColor: '#3F51B5', 
+        fillColor: '#00008B', 
         fillOpacity: 0.1,
         map: map,
       });
