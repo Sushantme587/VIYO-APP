@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from 'react';
-import { Map, APIProvider, Polygon } from '@vis.gl/react-google-maps';
+import { Map, APIProvider, useMap } from '@vis.gl/react-google-maps';
 import type { Zone } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -28,6 +28,43 @@ const getPolygonCenter = (path: { lat: number; lng: number }[]) => {
     const center = bounds.getCenter();
     return { lat: center.lat(), lng: center.lng() };
 }
+
+// A new component to handle drawing polygons
+function Polygons({ zones, selectedZone }: { zones: Zone[], selectedZone: Zone | null }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map || !zones.length) return;
+
+    // Create an array to hold all polygon instances for cleanup
+    const polygonInstances: google.maps.Polygon[] = [];
+
+    zones.forEach(zone => {
+      const colors = zoneTypeColors[zone.type];
+      const isSelected = selectedZone?.id === zone.id;
+
+      const polygon = new google.maps.Polygon({
+        paths: zone.path,
+        map: map,
+        fillColor: colors.fill,
+        strokeColor: colors.stroke,
+        fillOpacity: isSelected ? 0.5 : 0.3,
+        strokeWeight: isSelected ? 3 : 2,
+      });
+      
+      polygonInstances.push(polygon);
+    });
+
+    // Cleanup function to remove polygons when component unmounts or dependencies change
+    return () => {
+      polygonInstances.forEach(p => p.setMap(null));
+    };
+
+  }, [map, zones, selectedZone]);
+
+  return null; // This component does not render any JSX itself
+}
+
 
 export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
   const [zones, setZones] = useState<Zone[]>(initialZones);
@@ -110,20 +147,7 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
                     disableDefaultUI={true}
                     mapId="suraksha-drishti-zones-map"
                 >
-                    {zones.map(zone => {
-                        const colors = zoneTypeColors[zone.type];
-                        const isSelected = selectedZone?.id === zone.id;
-                        return (
-                             <Polygon
-                                key={zone.id}
-                                paths={zone.path}
-                                fillColor={colors.fill}
-                                strokeColor={colors.stroke}
-                                fillOpacity={isSelected ? 0.5 : 0.3}
-                                strokeWeight={isSelected ? 3 : 2}
-                            />
-                        )
-                    })}
+                  <Polygons zones={zones} selectedZone={selectedZone} />
                 </Map>
             </APIProvider>
         </Card>
