@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import {
   Card,
   CardContent,
@@ -21,13 +22,26 @@ import { useToast } from '@/hooks/use-toast';
 
 export default function SupportPage() {
   const { toast } = useToast();
+  const [subject, setSubject] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleSubmitTicket = () => {
+    if (!subject || !description) {
+        toast({
+            title: 'Incomplete Form',
+            description: 'Please fill out both the subject and description fields.',
+            variant: 'destructive',
+        });
+        return;
+    }
     toast({
       title: 'Ticket Submitted',
       description:
         "We've received your request and will get back to you shortly.",
     });
+    // Clear the form fields
+    setSubject('');
+    setDescription('');
   };
 
   return (
@@ -102,6 +116,8 @@ export default function SupportPage() {
               <Input
                 id="subject"
                 placeholder="e.g., Issue with dispatching a unit"
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
               />
             </div>
             <div className="space-y-2">
@@ -110,6 +126,8 @@ export default function SupportPage() {
                 id="description"
                 placeholder="Please describe the issue in detail..."
                 rows={5}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
             <Button className="w-full" onClick={handleSubmitTicket}>
