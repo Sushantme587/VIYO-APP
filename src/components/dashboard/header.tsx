@@ -20,13 +20,14 @@ import {
   BarChart3,
   Users,
   ShieldCheck,
+  LogOut,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const navItems = [
-  { href: '/', icon: LayoutDashboard, label: 'Dashboard' },
-  { href: '/analytics', icon: BarChart3, label: 'Analytics' },
-  { href: '/tourists', icon: Users, label: 'Tourists' },
+  { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { href: '/dashboard/analytics', icon: BarChart3, label: 'Analytics' },
+  { href: '/dashboard/tourists', icon: Users, label: 'Tourists' },
 ];
 
 export default function Header() {
@@ -42,7 +43,7 @@ export default function Header() {
         <SheetContent side="left" className="sm:max-w-xs">
           <nav className="grid gap-6 text-lg font-medium">
             <Link
-              href="#"
+              href="/dashboard"
               className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
             >
               <ShieldCheck className="h-5 w-5 transition-all group-hover:scale-110" />
@@ -83,7 +84,12 @@ export default function Header() {
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuItem>Support</DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Logout</DropdownMenuItem>
+           <DropdownMenuItem asChild>
+              <Link href="/">
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Logout</span>
+              </Link>
+            </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     </header>

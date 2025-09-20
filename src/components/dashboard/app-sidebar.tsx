@@ -17,9 +17,9 @@ import {
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/', icon: LayoutDashboard, label: 'Dashboard' },
-  { href: '/analytics', icon: BarChart3, label: 'Analytics' },
-  { href: '/tourists', icon: Users, label: 'Tourists' },
+  { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+  { href: '/dashboard/analytics', icon: BarChart3, label: 'Analytics' },
+  { href: '/dashboard/tourists', icon: Users, label: 'Tourists' },
 ];
 
 export default function AppSidebar() {
@@ -29,7 +29,7 @@ export default function AppSidebar() {
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-card sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
         <Link
-          href="/"
+          href="/dashboard"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
           <ShieldCheck className="h-5 w-5 transition-all group-hover:scale-110" />
