@@ -9,6 +9,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ShieldCheck, PlusCircle } from 'lucide-react';
+import { NewZoneModal } from './new-zone-modal';
+import { useToast } from '@/hooks/use-toast';
 
 interface ZoneManagementProps {
   initialZones: Zone[];
@@ -70,12 +72,34 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
   const [zones, setZones] = useState<Zone[]>(initialZones);
   const [selectedZone, setSelectedZone] = useState<Zone | null>(zones[0] || null);
   const [mapCenter, setMapCenter] = useState(getPolygonCenter(zones[0]?.path));
+  const [isNewZoneModalOpen, setNewZoneModalOpen] = useState(false);
+  const { toast } = useToast();
   
   useEffect(() => {
     if (selectedZone) {
       setMapCenter(getPolygonCenter(selectedZone.path));
     }
   }, [selectedZone]);
+  
+  const handleAddZone = (newZone: Omit<Zone, 'id' | 'path'>) => {
+    const zoneToAdd: Zone = {
+      ...newZone,
+      id: `zone-${Date.now()}`,
+      // For now, let's add a default path. In a real scenario, this would be drawn on the map.
+      path: [
+        { lat: mapCenter.lat + 0.005, lng: mapCenter.lng + 0.005 },
+        { lat: mapCenter.lat + 0.005, lng: mapCenter.lng - 0.005 },
+        { lat: mapCenter.lat - 0.005, lng: mapCenter.lng - 0.005 },
+        { lat: mapCenter.lat - 0.005, lng: mapCenter.lng + 0.005 },
+      ]
+    };
+    setZones(prev => [zoneToAdd, ...prev]);
+    setSelectedZone(zoneToAdd);
+    toast({
+      title: 'Zone Created',
+      description: `The new zone "${zoneToAdd.name}" has been added.`,
+    });
+  };
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -94,64 +118,71 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
   }
 
   return (
-    <div className="grid gap-6 md:grid-cols-3 h-[calc(100vh-12rem)]">
-      <Card className="md:col-span-1 flex flex-col">
-        <CardHeader>
-          <div className="flex justify-between items-center">
-            <div>
-              <CardTitle>Defined Zones</CardTitle>
-              <CardDescription>All monitored geo-fenced areas.</CardDescription>
+    <>
+      <div className="grid gap-6 md:grid-cols-3 h-[calc(100vh-12rem)]">
+        <Card className="md:col-span-1 flex flex-col">
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>Defined Zones</CardTitle>
+                <CardDescription>All monitored geo-fenced areas.</CardDescription>
+              </div>
+              <Button size="sm" onClick={() => setNewZoneModalOpen(true)}>
+                <PlusCircle className="mr-2" />
+                New Zone
+              </Button>
             </div>
-            <Button size="sm">
-              <PlusCircle className="mr-2" />
-              New Zone
-            </Button>
-          </div>
-        </CardHeader>
-        <CardContent className="flex-grow overflow-hidden p-0">
-          <ScrollArea className="h-full">
-            <div className="p-4 space-y-2">
-              {zones.map(zone => (
-                <Card 
-                  key={zone.id} 
-                  className={`cursor-pointer transition-all ${selectedZone?.id === zone.id ? 'border-primary' : ''}`}
-                  onClick={() => setSelectedZone(zone)}
-                >
-                  <CardHeader className="p-4">
-                    <CardTitle className="text-base flex justify-between items-center">
-                      {zone.name}
-                      <Badge variant={
-                        zone.type === 'Restricted' ? 'destructive' : 
-                        zone.type === 'High-Traffic' ? 'secondary' : 'default'
-                      } style={zone.type === 'High-Traffic' ? {backgroundColor: 'hsl(var(--accent))'} : {}}>
-                        {zone.type}
-                      </Badge>
-                    </CardTitle>
-                    <CardDescription className="text-xs pt-1">{zone.description}</CardDescription>
-                  </CardHeader>
-                </Card>
-              ))}
-            </div>
-          </ScrollArea>
-        </CardContent>
-      </Card>
-      <div className="md:col-span-2 h-full">
-         <Card className="h-full w-full">
-            <APIProvider apiKey={apiKey}>
-                <Map
-                    key={selectedZone?.id} // Force re-render on selection change
-                    style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
-                    center={mapCenter}
-                    zoom={14}
-                    gestureHandling={'greedy'}
-                    disableDefaultUI={true}
-                    mapId="suraksha-drishti-zones-map"
-                >
-                  <Polygons zones={zones} selectedZone={selectedZone} />
-                </Map>
-            </APIProvider>
+          </CardHeader>
+          <CardContent className="flex-grow overflow-hidden p-0">
+            <ScrollArea className="h-full">
+              <div className="p-4 space-y-2">
+                {zones.map(zone => (
+                  <Card 
+                    key={zone.id} 
+                    className={`cursor-pointer transition-all ${selectedZone?.id === zone.id ? 'border-primary' : ''}`}
+                    onClick={() => setSelectedZone(zone)}
+                  >
+                    <CardHeader className="p-4">
+                      <CardTitle className="text-base flex justify-between items-center">
+                        {zone.name}
+                        <Badge variant={
+                          zone.type === 'Restricted' ? 'destructive' : 
+                          zone.type === 'High-Traffic' ? 'secondary' : 'default'
+                        } style={zone.type === 'High-Traffic' ? {backgroundColor: 'hsl(var(--accent))'} : {}}>
+                          {zone.type}
+                        </Badge>
+                      </CardTitle>
+                      <CardDescription className="text-xs pt-1">{zone.description}</CardDescription>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+            </ScrollArea>
+          </CardContent>
         </Card>
+        <div className="md:col-span-2 h-full">
+          <Card className="h-full w-full">
+              <APIProvider apiKey={apiKey}>
+                  <Map
+                      key={selectedZone?.id} // Force re-render on selection change
+                      style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
+                      center={mapCenter}
+                      zoom={14}
+                      gestureHandling={'greedy'}
+                      disableDefaultUI={true}
+                      mapId="suraksha-drishti-zones-map"
+                  >
+                    <Polygons zones={zones} selectedZone={selectedZone} />
+                  </Map>
+              </APIProvider>
+          </Card>
+        </div>
       </div>
-    </div>
+      <NewZoneModal 
+        isOpen={isNewZoneModalOpen}
+        setIsOpen={setNewZoneModalOpen}
+        onAddZone={handleAddZone}
+      />
+    </>
   );
 }
