@@ -45,7 +45,7 @@ export function NewZoneModal({ isOpen, setIsOpen, onAddZone }: NewZoneModalProps
       return;
     }
     
-    onAddZone({ name, description, type });
+    onAddZone({ name, description, type: type as Zone['type'] });
     setIsOpen(false);
     
     // Reset form
@@ -84,7 +84,7 @@ export function NewZoneModal({ isOpen, setIsOpen, onAddZone }: NewZoneModalProps
           </div>
           <div className="grid gap-2">
              <Label htmlFor="zone-type">Zone Type</Label>
-             <Select onValueChange={(value: Zone['type']) => setType(value)} value={type}>
+             <Select onValueChange={(value) => setType(value as Zone['type'])} value={type}>
                 <SelectTrigger id="zone-type">
                   <SelectValue placeholder="Select a zone type" />
                 </SelectTrigger>

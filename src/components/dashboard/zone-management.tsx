@@ -128,7 +128,7 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
                 <CardDescription>All monitored geo-fenced areas.</CardDescription>
               </div>
               <Button size="sm" onClick={() => setNewZoneModalOpen(true)}>
-                <PlusCircle className="mr-2" />
+                <PlusCircle className="mr-2 h-4 w-4" />
                 New Zone
               </Button>
             </div>
@@ -171,6 +171,7 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
                       gestureHandling={'greedy'}
                       disableDefaultUI={true}
                       mapId="suraksha-drishti-zones-map"
+                      onCenterChanged={(e) => setMapCenter({ lat: e.detail.center.lat, lng: e.detail.center.lng })}
                   >
                     <Polygons zones={zones} selectedZone={selectedZone} />
                   </Map>
