@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Phone, MapPin, ShieldCheck } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 import { useMapSettings } from '@/contexts/map-settings-context';
+import { useAssignedZone } from '@/contexts/assigned-zone-context';
 
 interface MapViewProps {
   tourists: Tourist[];
@@ -21,6 +22,15 @@ const zoneTypeColors = {
   'High-Traffic': { fill: '#ffc107', stroke: '#e69500' }, // Yellow
   'Scenic': { fill: '#4CAF50', stroke: '#388E3C' }, // Green
 };
+
+// Helper to calculate center of a polygon
+const getPolygonCenter = (path: { lat: number; lng: number }[]) => {
+    if (!path || path.length === 0) return { lat: 25.5788, lng: 91.8933 }; // Default center
+    const bounds = new google.maps.LatLngBounds();
+    path.forEach(point => bounds.extend(new google.maps.LatLng(point.lat, point.lng)));
+    const center = bounds.getCenter();
+    return { lat: center.lat(), lng: center.lng() };
+}
 
 // Helper component to manage the traffic layer
 function Traffic() {
@@ -79,8 +89,12 @@ function ZonePolygons({ zones }: { zones: Zone[] }) {
 
 export default function MapView({ tourists, patrolUnits, zones }: MapViewProps) {
   const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
+  const { zoneId } = useAssignedZone();
 
-  const center = { lat: 25.5788, lng: 91.8933 }; // Shillong as default center
+  const assignedZone = zones.find(z => z.id === zoneId);
+  const center = assignedZone ? getPolygonCenter(assignedZone.path) : { lat: 25.5788, lng: 91.8933 };
+  const zoom = assignedZone ? 14 : 12;
+
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   if (!apiKey) {
@@ -101,9 +115,10 @@ export default function MapView({ tourists, patrolUnits, zones }: MapViewProps) 
     <Card className="h-full w-full">
       <APIProvider apiKey={apiKey}>
         <Map
+          key={zoneId} // Re-center map when zone changes
           style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
-          defaultCenter={center}
-          defaultZoom={12}
+          center={center}
+          zoom={zoom}
           gestureHandling={'greedy'}
           disableDefaultUI={true}
           mapId="suraksha-drishti-map"
