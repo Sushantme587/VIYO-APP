@@ -49,7 +49,7 @@ export default function AlertConsole({ initialAlerts, allTourists }: AlertConsol
             id: `alert-${Date.now()}`,
             tourist: randomTourist,
             type: result.anomalyType || 'AI Anomaly',
-            severity: result.anomalyScore && result.anomalyScore > 0.65 ? 'Critical' : 'High',
+            severity: result.anomalyScore && result.anomalyScore > 0.8 ? 'Critical' : 'High',
             timestamp: new Date().toISOString(),
             location: randomTourist.locationHistory[randomTourist.locationHistory.length - 1],
             details: result.explanation,
@@ -65,7 +65,7 @@ export default function AlertConsole({ initialAlerts, allTourists }: AlertConsol
       } catch (error) {
         console.error("Error checking for anomalies:", error);
       }
-    }, 10000); // Check every 10 seconds
+    }, 20000); // Check every 20 seconds
 
     return () => clearInterval(interval);
   }, [allTourists, toast]);
