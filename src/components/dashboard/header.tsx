@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -23,18 +24,18 @@ import {
   LogOut,
   Settings,
   LifeBuoy,
-  MapPin,
   FileText,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { href: '/dashboard/analytics', icon: BarChart3, label: 'Analytics' },
-  { href: '/dashboard/tourists', icon: Users, label: 'Tourists' },
-  { href: '/dashboard/firs', icon: FileText, label: 'Filed FIRs' },
-  { href: '/dashboard/zones', icon: MapPin, label: 'Zones' },
-  { href: '/dashboard/settings', icon: Settings, label: 'Settings' },
+  { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', color: 'text-sky-500' },
+  { href: '/dashboard/analytics', icon: BarChart3, label: 'Analytics', color: 'text-orange-500' },
+  { href: '/dashboard/tourists', icon: Users, label: 'Tourists', color: 'text-green-500' },
+  { href: '/dashboard/firs', icon: FileText, label: 'Filed FIRs', color: 'text-rose-500' },
+  { href: '/dashboard/settings', icon: Settings, label: 'Settings', color: 'text-blue-500' },
+  { href: '/dashboard/support', icon: LifeBuoy, label: 'Support', color: 'text-amber-500' },
 ];
 
 export default function Header() {
@@ -62,7 +63,7 @@ export default function Header() {
                 href={item.href}
                 className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
               >
-                <item.icon className="h-5 w-5" />
+                <item.icon className={cn("h-5 w-5", item.color)} />
                 {item.label}
               </Link>
             ))}

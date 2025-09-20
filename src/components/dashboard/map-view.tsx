@@ -1,14 +1,14 @@
+
 "use client";
 
 import { Map, Marker, InfoWindow, APIProvider, useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
-import type { Tourist, PatrolUnit, Zone } from '@/lib/types';
+import type { Tourist, PatrolUnit } from '@/lib/types';
 import { useState, useEffect, useMemo } from 'react';
 import { Card } from '../ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Phone, MapPin, ShieldCheck } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 import { useMapSettings } from '@/contexts/map-settings-context';
-import { zones } from '@/lib/data';
 
 // Helper component to manage the traffic layer
 function Traffic() {
@@ -63,34 +63,6 @@ function HeatmapLayer({ tourists }: { tourists: Tourist[] }) {
 
     return null;
 }
-
-// Helper component to render zone polygons
-function ZonePolygons({ zonesData }: { zonesData: Zone[] }) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!map) return;
-
-    const polygons = zonesData.map(zone => {
-      return new google.maps.Polygon({
-        paths: zone.path,
-        strokeColor: '#00008B',
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: '#00008B', 
-        fillOpacity: 0.1,
-        map: map,
-      });
-    });
-
-    return () => {
-      polygons.forEach(p => p.setMap(null));
-    };
-  }, [map, zonesData]);
-
-  return null;
-}
-
 
 interface MapViewProps {
   tourists: Tourist[];
@@ -148,8 +120,6 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
           {/* Render heatmap if toggled on */}
           <HeatmapLayer tourists={touristsInIndia} />
           
-          <ZonePolygons zonesData={zones} />
-
           {touristsInIndia.map((tourist) => {
             const location = tourist.locationHistory[tourist.locationHistory.length - 1];
             return (
