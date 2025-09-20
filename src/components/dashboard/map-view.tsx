@@ -1,12 +1,12 @@
 "use client";
 
-import { Map, Marker, InfoWindow } from '@vis.gl/react-google-maps';
+import { Map, Marker, InfoWindow, APIProvider } from '@vis.gl/react-google-maps';
 import type { Tourist, PatrolUnit } from '@/lib/types';
 import { useState } from 'react';
 import { Card } from '../ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Phone, MapPin } from 'lucide-react';
-import { APIProvider } from '@vis.gl/react-google-maps';
+import { Phone, MapPin, ShieldCheck } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
 
 interface MapViewProps {
   tourists: Tourist[];
@@ -17,10 +17,25 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
   const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
 
   const center = { lat: 25.5788, lng: 91.8933 }; // Shillong as default center
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+
+  if (!apiKey || apiKey === 'YOUR_API_KEY_HERE') {
+    return (
+        <Card className="h-full w-full flex items-center justify-center">
+            <Alert variant="destructive" className="w-auto">
+              <ShieldCheck className="h-4 w-4" />
+              <AlertTitle>Google Maps API Key Missing</AlertTitle>
+              <AlertDescription>
+                Please add a valid Google Maps API key to the <b>.env</b> file to enable map functionality.
+              </AlertDescription>
+            </Alert>
+        </Card>
+    );
+  }
 
   return (
     <Card className="h-full w-full">
-      <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}>
+      <APIProvider apiKey={apiKey}>
         <Map
           style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
           defaultCenter={center}
