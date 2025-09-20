@@ -1,23 +1,20 @@
 
 "use client";
 
-import { Map, Marker, InfoWindow, APIProvider, useMap } from '@vis.gl/react-google-maps';
-import type { Tourist, PatrolUnit } from '@/lib/types';
+import { Map, Marker, InfoWindow, APIProvider, useMap, useMapsLibrary } from '@vis.gl/react-google-maps';
+import type { Tourist, PatrolUnit, Zone } from '@/lib/types';
 import { useState, useEffect } from 'react';
 import { Card } from '../ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Phone, MapPin, ShieldCheck } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
-
-interface MapViewProps {
-  tourists: Tourist[];
-  patrolUnits: PatrolUnit[];
-}
+import { useMapSettings } from '@/contexts/map-settings-context';
+import { zones } from '@/lib/data';
 
 // Helper component to manage the traffic layer
 function Traffic() {
   const map = useMap();
-  const [showTraffic] = useState(false); // Hardcoded for now, can be moved to context
+  const { showTraffic } = useMapSettings();
 
   useEffect(() => {
     if (!map) return;
@@ -37,13 +34,81 @@ function Traffic() {
   return null;
 }
 
+// Helper component for the heatmap layer
+function Heatmap({ data }: { data: google.maps.LatLng[] }) {
+    const map = useMap();
+    const visualization = useMapsLibrary('visualization');
+    const [heatmap, setHeatmap] = useState<google.maps.visualization.HeatmapLayer | null>(null);
+
+    useEffect(() => {
+        if (!map || !visualization) return;
+
+        if (heatmap) {
+            heatmap.setMap(null);
+        }
+
+        const newHeatmap = new visualization.HeatmapLayer({
+            data: data,
+            map: map,
+            radius: 40,
+            opacity: 0.8
+        });
+
+        setHeatmap(newHeatmap);
+
+        return () => {
+            newHeatmap.setMap(null);
+        }
+    }, [map, visualization, data]);
+
+    return null;
+}
+
+// Helper component to render zone polygons
+function ZonePolygons({ zonesData }: { zonesData: Zone[] }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!map) return;
+
+    const polygons = zonesData.map(zone => {
+      return new google.maps.Polygon({
+        paths: zone.path,
+        strokeColor: '#3F51B5',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillOpacity: 0, 
+        map: map,
+      });
+    });
+
+    return () => {
+      polygons.forEach(p => p.setMap(null));
+    };
+  }, [map, zonesData]);
+
+  return null;
+}
+
+
+interface MapViewProps {
+  tourists: Tourist[];
+  patrolUnits: PatrolUnit[];
+}
+
 export default function MapView({ tourists, patrolUnits }: MapViewProps) {
   const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
+  const { showTraffic } = useMapSettings();
 
   const center = { lat: 25.5788, lng: 91.8933 };
   const initialZoom = 12;
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+
+  const heatmapData = tourists.map(tourist => {
+    const loc = tourist.locationHistory[tourist.locationHistory.length - 1];
+    return new google.maps.LatLng(loc.latitude, loc.longitude);
+  });
 
   if (!apiKey) {
     return (
@@ -73,7 +138,12 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
           disableDefaultUI={true}
           mapId="suraksha-drishti-map"
         >
-          <Traffic />
+          {showTraffic ? <Traffic /> : null}
+
+          {/* Render heatmap if toggled on */}
+          <Heatmap data={heatmapData} />
+          
+          <ZonePolygons zonesData={zones} />
 
           {tourists.map((tourist) => {
             const location = tourist.locationHistory[tourist.locationHistory.length - 1];
