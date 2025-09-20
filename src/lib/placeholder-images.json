@@ -24,6 +24,66 @@
       "imageUrl": "https://picsum.photos/seed/104/100/100",
       "imageHint": "woman smiling"
     },
+    {
+      "id": "tourist-5",
+      "description": "Portrait of Aditya Kumar",
+      "imageUrl": "https://picsum.photos/seed/105/100/100",
+      "imageHint": "man travel"
+    },
+    {
+      "id": "tourist-6",
+      "description": "Portrait of Ishaan Reddy",
+      "imageUrl": "https://picsum.photos/seed/106/100/100",
+      "imageHint": "man hiking"
+    },
+    {
+      "id": "tourist-7",
+      "description": "Portrait of Ananya Rao",
+      "imageUrl": "https://picsum.photos/seed/107/100/100",
+      "imageHint": "woman nature"
+    },
+    {
+      "id": "tourist-8",
+      "description": "Portrait of Rohan Joshi",
+      "imageUrl": "https://picsum.photos/seed/108/100/100",
+      "imageHint": "man glasses"
+    },
+    {
+      "id": "tourist-9",
+      "description": "Portrait of Kiara Desai",
+      "imageUrl": "https://picsum.photos/seed/109/100/100",
+      "imageHint": "woman outdoors"
+    },
+    {
+      "id": "tourist-10",
+      "description": "Portrait of Arnav Mehra",
+      "imageUrl": "https://picsum.photos/seed/110/100/100",
+      "imageHint": "man smiling"
+    },
+    {
+      "id": "tourist-11",
+      "description": "Portrait of Myra Iyer",
+      "imageUrl": "https://picsum.photos/seed/111/100/100",
+      "imageHint": "woman glasses"
+    },
+    {
+      "id": "tourist-12",
+      "description": "Portrait of Kabir Menon",
+      "imageUrl": "https://picsum.photos/seed/112/100/100",
+      "imageHint": "man serious"
+    },
+    {
+      "id": "tourist-13",
+      "description": "Portrait of Zara Begum",
+      "imageUrl": "https://picsum.photos/seed/113/100/100",
+      "imageHint": "woman traditional"
+    },
+    {
+      "id": "tourist-14",
+      "description": "Portrait of Reyansh Thakur",
+      "imageUrl": "https://picsum.photos/seed/114/100/100",
+      "imageHint": "man backpack"
+    },
      {
       "id": "user-avatar",
       "description": "Avatar for the logged-in user",
