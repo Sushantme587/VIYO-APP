@@ -1,5 +1,6 @@
 import AppSidebar from '@/components/dashboard/app-sidebar';
 import Header from '@/components/dashboard/header';
+import { MapSettingsProvider } from '@/contexts/map-settings-context';
 
 export default function DashboardLayout({
   children,
@@ -7,6 +8,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
+    <MapSettingsProvider>
       <div className="flex min-h-screen w-full flex-col bg-muted/40">
         <AppSidebar />
         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
@@ -16,5 +18,6 @@ export default function DashboardLayout({
           </main>
         </div>
       </div>
+    </MapSettingsProvider>
   );
 }

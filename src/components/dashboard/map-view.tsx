@@ -1,12 +1,13 @@
 "use client";
 
-import { Map, Marker, InfoWindow, APIProvider } from '@vis.gl/react-google-maps';
+import { Map, Marker, InfoWindow, APIProvider, TrafficLayer } from '@vis.gl/react-google-maps';
 import type { Tourist, PatrolUnit } from '@/lib/types';
 import { useState } from 'react';
 import { Card } from '../ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Phone, MapPin, ShieldCheck } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '../ui/alert';
+import { useMapSettings } from '@/contexts/map-settings-context';
 
 interface MapViewProps {
   tourists: Tourist[];
@@ -15,6 +16,7 @@ interface MapViewProps {
 
 export default function MapView({ tourists, patrolUnits }: MapViewProps) {
   const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
+  const { showTraffic } = useMapSettings();
 
   const center = { lat: 25.5788, lng: 91.8933 }; // Shillong as default center
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -44,6 +46,8 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
           disableDefaultUI={true}
           mapId="suraksha-drishti-map"
         >
+          {showTraffic && <TrafficLayer />}
+
           {tourists.map((tourist) => {
             const location = tourist.locationHistory[tourist.locationHistory.length - 1];
             return (
