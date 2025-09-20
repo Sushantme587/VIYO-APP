@@ -142,7 +142,7 @@ export default function SettingsPage() {
                     </div>
                     <Switch id="traffic-layer" />
                 </div>
-                <Button>Save Map Settings</Button>
+                <Button className="w-full sm:w-auto mt-2">Save Map Settings</Button>
             </CardContent>
           </Card>
         </TabsContent>
