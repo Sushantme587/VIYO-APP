@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,8 +12,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTheme } from "@/components/theme-provider";
 
 export default function SettingsPage() {
+  const { theme, setTheme } = useTheme();
+
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
@@ -99,12 +104,16 @@ export default function SettingsPage() {
                     <div className="space-y-0.5">
                         <Label htmlFor="theme" className="text-base">Theme</Label>
                         <p className="text-sm text-muted-foreground">
-                            Select between light and dark themes. (This is a prototype and does not function)
+                            Select between light and dark themes.
                         </p>
                     </div>
                      <div className="flex items-center space-x-2">
                         <Label htmlFor="theme-switch">Light</Label>
-                        <Switch id="theme-switch" />
+                        <Switch
+                          id="theme-switch"
+                          checked={theme === "dark"}
+                          onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
+                        />
                         <Label htmlFor="theme-switch">Dark</Label>
                     </div>
                 </div>
