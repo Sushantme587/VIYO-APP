@@ -31,7 +31,6 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
         defaultZoom={12}
         gestureHandling={'greedy'}
         disableDefaultUI={true}
-        mapId={process.env.NEXT_PUBLIC_GOOGLE_MAP_ID || "DEMO_MAP_ID"}
       >
         {tourists.map((tourist) => {
           const location = tourist.locationHistory[tourist.locationHistory.length - 1];
