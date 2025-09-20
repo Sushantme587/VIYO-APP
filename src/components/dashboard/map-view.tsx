@@ -93,7 +93,7 @@ export default function MapView({ tourists, patrolUnits, zones }: MapViewProps) 
 
   const assignedZone = zones.find(z => z.id === zoneId);
   const center = assignedZone ? getPolygonCenter(assignedZone.path) : { lat: 25.5788, lng: 91.8933 };
-  const zoom = assignedZone ? 14 : 12;
+  const initialZoom = assignedZone ? 14 : 12;
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
@@ -117,8 +117,11 @@ export default function MapView({ tourists, patrolUnits, zones }: MapViewProps) 
         <Map
           key={zoneId} // Re-center map when zone changes
           style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
-          center={center}
-          zoom={zoom}
+          defaultCenter={center}
+          defaultZoom={initialZoom}
+          minZoom={3}
+          maxZoom={20}
+          zoomControl={true}
           gestureHandling={'greedy'}
           disableDefaultUI={true}
           mapId="suraksha-drishti-map"
