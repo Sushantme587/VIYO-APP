@@ -17,7 +17,7 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
   const [selectedTourist, setSelectedTourist] = useState<Tourist | null>(null);
 
   const center = { lat: 25.5788, lng: 91.8933 }; // Shillong as default center
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || '';
+  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   if (!apiKey || apiKey === 'YOUR_API_KEY_HERE') {
     return (
@@ -26,7 +26,7 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
               <ShieldCheck className="h-4 w-4" />
               <AlertTitle>Google Maps API Key Missing</AlertTitle>
               <AlertDescription>
-                Please add a valid Google Maps API key to the <b>.env</b> file to enable map functionality.
+                Please add your valid Google Maps API key to the <b>.env</b> file to enable map functionality. The variable should be named NEXT_PUBLIC_GOOGLE_MAPS_API_KEY.
               </AlertDescription>
             </Alert>
         </Card>
