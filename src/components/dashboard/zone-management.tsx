@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Map, APIProvider, Polygon } from '@vis.gl/react-google-maps';
 import type { Zone } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -20,11 +20,26 @@ const zoneTypeColors = {
   'Scenic': { fill: '#4CAF50', stroke: '#388E3C' },
 };
 
+// Helper function to calculate the center of a polygon
+const getPolygonCenter = (path: { lat: number; lng: number }[]) => {
+    if (!path || path.length === 0) return { lat: 25.5788, lng: 91.8933 }; // Default center
+    const bounds = new google.maps.LatLngBounds();
+    path.forEach(point => bounds.extend(new google.maps.LatLng(point.lat, point.lng)));
+    const center = bounds.getCenter();
+    return { lat: center.lat(), lng: center.lng() };
+}
+
 export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
   const [zones, setZones] = useState<Zone[]>(initialZones);
   const [selectedZone, setSelectedZone] = useState<Zone | null>(zones[0] || null);
+  const [mapCenter, setMapCenter] = useState(getPolygonCenter(zones[0]?.path));
+  
+  useEffect(() => {
+    if (selectedZone) {
+      setMapCenter(getPolygonCenter(selectedZone.path));
+    }
+  }, [selectedZone]);
 
-  const center = { lat: 25.5788, lng: 91.8933 };
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
   if (!apiKey) {
@@ -87,23 +102,25 @@ export default function ZoneManagement({ initialZones }: ZoneManagementProps) {
          <Card className="h-full w-full">
             <APIProvider apiKey={apiKey}>
                 <Map
+                    key={selectedZone?.id} // Force re-render on selection change
                     style={{ width: '100%', height: '100%', borderRadius: '0.5rem' }}
-                    defaultCenter={center}
-                    defaultZoom={12}
+                    center={mapCenter}
+                    zoom={14}
                     gestureHandling={'greedy'}
                     disableDefaultUI={true}
                     mapId="suraksha-drishti-zones-map"
                 >
                     {zones.map(zone => {
                         const colors = zoneTypeColors[zone.type];
+                        const isSelected = selectedZone?.id === zone.id;
                         return (
                              <Polygon
                                 key={zone.id}
                                 paths={zone.path}
                                 fillColor={colors.fill}
                                 strokeColor={colors.stroke}
-                                fillOpacity={0.3}
-                                strokeWeight={2}
+                                fillOpacity={isSelected ? 0.5 : 0.3}
+                                strokeWeight={isSelected ? 3 : 2}
                             />
                         )
                     })}
