@@ -107,6 +107,15 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
 
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
+  const touristsInIndia = useMemo(() => {
+    return tourists.filter(tourist => {
+      const loc = tourist.locationHistory[tourist.locationHistory.length - 1];
+      // Approximate coordinates for India
+      const is_in_india = loc.latitude > 6.5 && loc.latitude < 35.5 && loc.longitude > 68.0 && loc.longitude < 97.5;
+      return is_in_india;
+    });
+  }, [tourists]);
+
   if (!apiKey) {
     return (
         <Card className="h-full w-full flex items-center justify-center">
@@ -138,7 +147,7 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
           {showTraffic ? <Traffic /> : null}
 
           {/* Render heatmap if toggled on */}
-          <HeatmapLayer tourists={tourists} />
+          <HeatmapLayer tourists={touristsInIndia} />
           
           <ZonePolygons zonesData={zones} />
 
