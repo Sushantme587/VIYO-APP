@@ -5,3 +5,9 @@ runConfig:
   # Increase this value if you'd like to automatically spin up
   # more instances in response to increased traffic.
   maxInstances: 1
+  # Make the Google Maps API key available to the app.
+  # You must set this secret in your terminal using the command:
+  # firebase apphosting:secrets:set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+  # You will be prompted to enter the secret value.
+  secrets:
+    - secret: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
