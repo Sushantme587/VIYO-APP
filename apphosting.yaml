@@ -6,10 +6,9 @@ runConfig:
   # more instances in response to increased traffic.
   maxInstances: 1
   # Make the Google Maps API key available to the app.
-  # You must set this variable in your terminal using the command:
-  # firebase apphosting:backends:update --project <your-project-id> --update-env-vars=NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=<your-api-key>
   environment:
     - variable: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+      value: "AIzaSyAM4Pc9xFc6pW8pVSZiZeEhtkURscEzh6Y"
       availability:
         - BUILD
         - RUNTIME
