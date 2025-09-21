@@ -15,9 +15,9 @@ import {
   Settings,
   FileText,
   LifeBuoy,
-  ShieldCheck,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const navItems = [
   { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', color: 'text-sky-500' },
@@ -38,7 +38,7 @@ export default function AppSidebar() {
           href="/dashboard"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-          <ShieldCheck className="h-5 w-5 transition-all group-hover:scale-110" />
+          <Image src="/icon.png" alt="VIYO Logo" width={20} height={20} className="transition-all group-hover:scale-110" />
           <span className="sr-only">VIYO</span>
         </Link>
         <TooltipProvider>

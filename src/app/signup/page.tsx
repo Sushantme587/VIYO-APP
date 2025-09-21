@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link"
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button"
 import {
@@ -12,7 +13,6 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { ShieldCheck } from "lucide-react";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -32,7 +32,7 @@ export default function SignupPage() {
                 <div
                 className="group flex h-12 w-12 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-10 md:w-10 md:text-base"
                 >
-                <ShieldCheck className="h-6 w-6 transition-all group-hover:scale-110" />
+                <Image src="/icon.png" alt="VIYO Logo" width={24} height={24} className="transition-all group-hover:scale-110" />
                 <span className="sr-only">VIYO</span>
                 </div>
             </div>

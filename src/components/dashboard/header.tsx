@@ -20,7 +20,6 @@ import {
   LayoutDashboard,
   BarChart3,
   Users,
-  ShieldCheck,
   LogOut,
   Settings,
   LifeBuoy,
@@ -54,7 +53,7 @@ export default function Header() {
               href="/dashboard"
               className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
             >
-              <ShieldCheck className="h-5 w-5 transition-all group-hover:scale-110" />
+              <Image src="/icon.png" alt="VIYO Logo" width={24} height={24} className="transition-all group-hover:scale-110" />
               <span className="sr-only">VIYO</span>
             </Link>
             {navItems.map((item) => (
