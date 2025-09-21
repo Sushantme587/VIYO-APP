@@ -113,7 +113,7 @@ export default function MapView({ tourists, patrolUnits }: MapViewProps) {
           zoomControl={true}
           gestureHandling={'greedy'}
           disableDefaultUI={true}
-          mapId="suraksha-drishti-map"
+          mapId="viyo-map"
         >
           {showTraffic ? <Traffic /> : null}
 

@@ -55,7 +55,7 @@ export default function Header() {
               className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
             >
               <ShieldCheck className="h-5 w-5 transition-all group-hover:scale-110" />
-              <span className="sr-only">Suraksha Drishti</span>
+              <span className="sr-only">VIYO</span>
             </Link>
             {navItems.map((item) => (
               <Link
@@ -71,7 +71,7 @@ export default function Header() {
         </SheetContent>
       </Sheet>
       <div className="relative ml-auto flex-1 md:grow-0">
-        <h1 className="text-xl font-semibold hidden md:block">Suraksha Drishti</h1>
+        <h1 className="text-xl font-semibold hidden md:block">VIYO</h1>
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

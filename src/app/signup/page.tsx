@@ -33,7 +33,7 @@ export default function SignupPage() {
                 className="group flex h-12 w-12 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-10 md:w-10 md:text-base"
                 >
                 <ShieldCheck className="h-6 w-6 transition-all group-hover:scale-110" />
-                <span className="sr-only">Suraksha Drishti</span>
+                <span className="sr-only">VIYO</span>
                 </div>
             </div>
             <CardTitle className="text-2xl">Create an Officer Account</CardTitle>

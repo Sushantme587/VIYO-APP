@@ -12,7 +12,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Suraksha Drishti',
+  title: 'VIYO',
   description: 'Smart Tourist Safety Monitoring & Incident Response System',
 };
 

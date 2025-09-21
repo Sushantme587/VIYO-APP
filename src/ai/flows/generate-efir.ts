@@ -40,7 +40,7 @@ const prompt = ai.definePrompt({
     input: { schema: GenerateEFIRInputSchema },
     output: { schema: GenerateEFIROutputSchema },
     prompt: `
-    You are an AI assistant for the Suraksha Drishti tourist safety platform. Your task is to generate a formal Electronic First Information Report (E-FIR) based on the provided incident data. The report should be structured, clear, and professional.
+    You are an AI assistant for the VIYO tourist safety platform. Your task is to generate a formal Electronic First Information Report (E-FIR) based on the provided incident data. The report should be structured, clear, and professional.
 
     Incident Data:
     - Alert ID: {{{alertId}}}

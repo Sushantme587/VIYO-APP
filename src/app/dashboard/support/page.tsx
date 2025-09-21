@@ -54,7 +54,7 @@ export default function SupportPage() {
           <CardHeader>
             <CardTitle>Frequently Asked Questions</CardTitle>
             <CardDescription>
-              Find answers to common questions about the Suraksha Drishti
+              Find answers to common questions about the VIYO
               platform.
             </CardDescription>
           </CardHeader>
