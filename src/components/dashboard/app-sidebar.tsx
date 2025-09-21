@@ -21,7 +21,7 @@ import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 const navItems = [
-  { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', color: 'text-sky-500' },
+  { href: '/', icon: LayoutDashboard, label: 'Dashboard', color: 'text-sky-500' },
   { href: '/dashboard/analytics', icon: BarChart3, label: 'Analytics', color: 'text-orange-500' },
   { href: '/dashboard/tourists', icon: Users, label: 'Tourists', color: 'text-green-500' },
   { href: '/dashboard/firs', icon: FileText, label: 'Filed FIRs', color: 'text-rose-500' },
@@ -32,11 +32,18 @@ const navItems = [
 export default function AppSidebar() {
   const pathname = usePathname();
 
+  const checkActivePath = (currentPath: string, href: string) => {
+    if (href === '/') {
+        return currentPath === '/';
+    }
+    return currentPath.startsWith(href);
+  }
+
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-card sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
         <Link
-          href="/dashboard"
+          href="/"
           className="group flex h-12 w-12 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-10 md:w-10 md:text-base"
         >
           <Image src="/logo.jpeg" alt="VIYO Logo" width={32} height={32} className="transition-all group-hover:scale-110 object-cover rounded-full" />
@@ -50,12 +57,12 @@ export default function AppSidebar() {
                 href={item.href}
                 className={cn(
                   'flex h-10 w-10 items-center justify-center rounded-lg transition-colors md:h-10 md:w-10',
-                  pathname === item.href
+                  checkActivePath(pathname, item.href)
                     ? 'bg-accent text-accent-foreground'
                     : 'text-muted-foreground hover:text-foreground'
                 )}
               >
-                <item.icon className={cn("h-6 w-6", pathname !== item.href && item.color)} />
+                <item.icon className={cn("h-6 w-6", !checkActivePath(pathname, item.href) && item.color)} />
                 <span className="sr-only">{item.label}</span>
               </Link>
             </TooltipTrigger>

@@ -29,7 +29,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard', color: 'text-sky-500' },
+  { href: '/', icon: LayoutDashboard, label: 'Dashboard', color: 'text-sky-500' },
   { href: '/dashboard/analytics', icon: BarChart3, label: 'Analytics', color: 'text-orange-500' },
   { href: '/dashboard/tourists', icon: Users, label: 'Tourists', color: 'text-green-500' },
   { href: '/dashboard/firs', icon: FileText, label: 'Filed FIRs', color: 'text-rose-500' },
@@ -50,7 +50,7 @@ export default function Header() {
         <SheetContent side="left" className="sm:max-w-xs">
           <nav className="grid gap-6 text-lg font-medium">
             <Link
-              href="/dashboard"
+              href="/"
               className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
             >
               <Image src="/logo.jpeg" alt="VIYO Logo" width={28} height={28} className="transition-all group-hover:scale-110 object-cover rounded-full" />
