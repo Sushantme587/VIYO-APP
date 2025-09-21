@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -38,7 +39,7 @@ export default function AppSidebar() {
           href="/dashboard"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-          <Image src="/icon.png" alt="VIYO Logo" width={20} height={20} className="transition-all group-hover:scale-110" />
+          <Image src="/logo.jpeg" alt="VIYO Logo" width={20} height={20} className="transition-all group-hover:scale-110" />
           <span className="sr-only">VIYO</span>
         </Link>
         <TooltipProvider>
