@@ -35,7 +35,8 @@ export default function LoginPage() {
               <span className="sr-only">VIYO</span>
             </div>
           </div>
-          <CardTitle className="text-2xl">Officer Login</CardTitle>
+          <h1 className="text-3xl font-bold">VIYO</h1>
+          <CardTitle className="text-2xl pt-2">Officer Login</CardTitle>
           <CardDescription>
             Enter your credentials to access the dashboard.
           </CardDescription>
